@@ -31,6 +31,7 @@ public class User {
 
 	
 	/** コンストラクター */
+	public User() {}
 	public User(Integer id, String name, String email, String password, String zipcode, String address,
 			String telephone) {
 		super();
