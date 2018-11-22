@@ -15,7 +15,7 @@ import jp.co.rakus.ec2018c.repository.OrderRepository;
 @Service
 public class OrderService {
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderRepository orderRepository;
 	
 	/**
 	 * UserId,Statusを指定して注文情報を取得する.
