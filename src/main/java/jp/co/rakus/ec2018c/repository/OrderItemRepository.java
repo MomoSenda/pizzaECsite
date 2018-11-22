@@ -19,7 +19,7 @@ import jp.co.rakus.ec2018c.domain.OrderItem;
  *
  */
 @Repository
-public class OderItemRepository {
+public class OrderItemRepository {
 	
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -40,7 +40,7 @@ public class OderItemRepository {
 	}
 	
 	/**
-	 * ショッピングカートに商品を追加する.
+	 * 注文商品の情報を登録する.
 	 * 
 	 * @param orderItem 注文商品の情報
 	 * @return　IDを採番された注文商品の情報
