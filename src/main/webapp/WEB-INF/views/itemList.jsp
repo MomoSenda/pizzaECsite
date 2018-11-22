@@ -101,8 +101,7 @@
 
 							<th>
 								<a href="item_detail.html">
-									<img src="img/1.jpg"
-										class="img-responsive img-rounded" width="200" height="600">
+									<img src="img/1.jpg"class="img-responsive img-rounded" width="200" height="600">
 								</a><br>
 								<a href="item_detail.html">じゃがバターベーコン</a><br>
 								<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;1,380円(税抜)<br>
