@@ -22,8 +22,8 @@ public class Item {
 	
 	/**Lサイズの価格*/
 	Integer priceL;
-	
-	/**商品写真のパス*/
+
+	/**商品画像パス*/
 	String imagePath;
 	
 	/**削除フラグ*/
@@ -74,6 +74,7 @@ public class Item {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
+
 	public List<Topping> getToppingList() {
 		return toppingList;
 	}
