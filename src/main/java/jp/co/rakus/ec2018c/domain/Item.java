@@ -32,6 +32,18 @@ public class Item {
 	/**トッピングのリスト*/
 	private List<Topping> toppingList;
 	
+	
+	public Item(Integer id, String name, String description, Integer priceM, Integer priceL, String imagePath,
+			Boolean deleted) {
+		this.id=id;
+		this.name=name;
+		this.description=description;
+		this.priceM=priceM;
+		this.priceL=priceL;
+		this.imagePath=imagePath;
+		this.deleted=deleted;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
