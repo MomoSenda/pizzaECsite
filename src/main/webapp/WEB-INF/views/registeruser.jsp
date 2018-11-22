@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="bootstrap.css" rel="stylesheet">
+<link href="../bootstrap.css" rel="stylesheet">
 
 </head>
 
@@ -107,6 +107,9 @@
 		</div>	
 </div>
 	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 
 </body>
