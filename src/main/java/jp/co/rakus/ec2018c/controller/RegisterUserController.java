@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.RegisterUserForm;
-import jp.co.rakus.ec2018c.repository.UserRepository;
 import jp.co.rakus.ec2018c.service.RegisterUserService;
 
 @Controller
@@ -20,8 +19,7 @@ public class RegisterUserController {
 
 	@Autowired
 	private RegisterUserService registerUserService;
-	@Autowired
-	private UserRepository userRepository;
+
 	
 	
 	
@@ -41,7 +39,7 @@ public class RegisterUserController {
 	 */
 	@RequestMapping("/form")
 	public String form() {
-		return "";
+		return "registeruser";
 	}
 	
 	
