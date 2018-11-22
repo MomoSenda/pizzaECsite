@@ -8,7 +8,7 @@ import java.util.List;
  * @author risa.okumura
  *
  */
-public class OrdemItem {
+public class OrderItem {
 	
 	
 	/** 注文商品のID	 */
@@ -24,7 +24,7 @@ public class OrdemItem {
 	/** サイズ　*/
 	private Item item;
 	/** 商品　*/
-	private List<Toppoing> orderToppingList;
+	private List<Topping> orderToppingList;
 	
 	/**
 	 * 合計金額を計算する.
@@ -73,10 +73,10 @@ public class OrdemItem {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public List<Toppoing> getOrderToppingList() {
+	public List<Topping> getOrderToppingList() {
 		return orderToppingList;
 	}
-	public void setOrderToppingList(List<Toppoing> orderToppingList) {
+	public void setOrderToppingList(List<Topping> orderToppingList) {
 		this.orderToppingList = orderToppingList;
 	}
 	

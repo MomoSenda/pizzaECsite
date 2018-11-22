@@ -9,28 +9,28 @@ import java.util.List;
  */
 public class Item {
 	/**商品ID*/
-	Integer id;
+	private Integer id;
 	
 	/**商品名*/
-	String name;
+	private String name;
 	
 	/**商品説明*/
-	String description;
+	private String description;
 	
 	/**Mサイズの価格*/
-	Integer priceM;
+	private Integer priceM;
 	
 	/**Lサイズの価格*/
-	Integer priceL;
-
-	/**商品画像パス*/
-	String imagePath;
+	private Integer priceL;
+	
+	/**商品写真のパス*/
+	private String imagePath;
 	
 	/**削除フラグ*/
-	Boolean deleted;
+	private Boolean deleted;
 	
 	/**トッピングのリスト*/
-	List<Topping> toppingList;
+	private List<Topping> toppingList;
 	
 	public Integer getId() {
 		return id;
