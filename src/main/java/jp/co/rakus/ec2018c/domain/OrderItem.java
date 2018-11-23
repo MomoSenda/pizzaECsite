@@ -21,18 +21,35 @@ public class OrderItem {
 	private Integer quantity;
 	/** サイズ　*/
 	private Character size;
-	/** サイズ　*/
+	/** 商品情報　*/
 	private Item item;
-	/** 商品　*/
-	private List<Topping> orderToppingList;
+	/**　注文のトッピングのリスト　*/
+	private List<OrderTopping> orderToppingList;
+	
 	
 	/**
-	 * 合計金額を計算する.
+	 * 注文商品ごとの小計金額を計算する.
 	 * 
-	 * @return 合計金額
+	 * @return 注文商品の小計金額
 	 */
 	public int getSubTotal() {
-		return 0;
+		int subTotal = 0;
+		int orderItemPrice = 0;
+		int orderToppingPrice = 0;
+		int toppingPriceM = 200;
+		int toppingPriceL = 300;
+		
+		if(this.size=='M') {
+			orderItemPrice = item.getPriceM();
+			orderToppingPrice = orderToppingList.size() * toppingPriceM;
+		}else {
+			orderItemPrice = item.getPriceL();
+			orderToppingPrice = orderToppingList.size() * toppingPriceL;
+		}
+		
+		subTotal = (orderItemPrice + orderToppingPrice)*quantity;
+		
+		return subTotal;
 	}
 	
 	
@@ -73,10 +90,10 @@ public class OrderItem {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public List<Topping> getOrderToppingList() {
+	public List<OrderTopping> getOrderToppingList() {
 		return orderToppingList;
 	}
-	public void setOrderToppingList(List<Topping> orderToppingList) {
+	public void setOrderToppingList(List<OrderTopping> orderToppingList) {
 		this.orderToppingList = orderToppingList;
 	}
 	

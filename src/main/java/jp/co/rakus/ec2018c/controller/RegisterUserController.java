@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.RegisterUserForm;
-import jp.co.rakus.ec2018c.repository.UserRepository;
 import jp.co.rakus.ec2018c.service.RegisterUserService;
 
 @Controller
@@ -20,8 +19,7 @@ public class RegisterUserController {
 
 	@Autowired
 	private RegisterUserService registerUserService;
-	@Autowired
-	private UserRepository userRepository;
+
 	
 	
 	
@@ -41,7 +39,7 @@ public class RegisterUserController {
 	 */
 	@RequestMapping("/form")
 	public String form() {
-		return "";
+		return "registeruser";
 	}
 	
 	
@@ -55,31 +53,32 @@ public class RegisterUserController {
 	 */
 	@RequestMapping("/create")
 	public String create(@Validated RegisterUserForm form,
-			BindingResult result,
-			Model model) {
+								BindingResult result,
+								Model model) {
 		
-		String email = form.getEmail();
-		User user = userRepository.findByEmail(email);
-		if(user != null) {
-			result.rejectValue("email",null ,"このメールアドレスは既に使われております");
-			return form();
+		
+		//パスワード確認
+		if(!form.getPassword().equals(form.getCheckPassword())) {
+			result.rejectValue("checkPassword", "","パスワードを確認してください");
 		}
 		
-		String password = form.getPassword();
-		String checkPassword = form.getCheckPassword();
-		if(!(password.equals(checkPassword))) {
-			result.rejectValue("password",null,"確認用パスワードと入力が異なります");
-			return form();
+		
+		//メールアドレスが重複している場合の処理
+		User checkUser = registerUserService.findByEmail(form.getEmail());
+		if(checkUser != null) {
+			result.rejectValue("email", "","すでにメールアドレスが登録されています");
 		}
+		
 		
 		if(result.hasErrors()) {
 			return form();
 		}
 		
+		//フォームの内容をドメインに格納
+		User user = new User();
+		BeanUtils.copyProperties(form, user);
+		user = registerUserService.save(user);
 		
-		User registeredUser = new User();
-		BeanUtils.copyProperties(form, registeredUser);
-		registerUserService.save(registeredUser);
 		return "redirect";
 	}
 	

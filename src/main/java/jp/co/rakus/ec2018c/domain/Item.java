@@ -32,7 +32,7 @@ public class Item {
 	/**トッピングのリスト*/
 	private List<Topping> toppingList;
 	
-	
+	public Item() {}
 	public Item(Integer id, String name, String description, Integer priceM, Integer priceL, String imagePath,
 			Boolean deleted) {
 		this.id=id;
