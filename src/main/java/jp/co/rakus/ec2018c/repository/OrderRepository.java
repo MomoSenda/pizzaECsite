@@ -1,5 +1,7 @@
 package jp.co.rakus.ec2018c.repository;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -11,10 +13,17 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec2018c.domain.Order;
 
+/**
+ * ordersテーブルを操作するリポジトリ.
+ * 
+ * @author kento.uemura
+ *
+ */
 @Repository
 public class OrderRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
+	/** ordersのテーブル名の定数 */
 	public static final String TABLE_NAME = "orders";
 	
 	//作成途中
@@ -44,6 +53,12 @@ public class OrderRepository {
 	
 	private SimpleJdbcInsert insert;
 	
+	/**
+	 * initメソッド.
+	 * 
+	 * テーブルにinsertするためのメソッド
+	 */
+	@PostConstruct
 	public void init() {
 		SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert((JdbcTemplate)template.getJdbcOperations());
 		SimpleJdbcInsert withTableName = simpleJdbcInsert.withTableName(TABLE_NAME);
@@ -62,7 +77,7 @@ public class OrderRepository {
 			Number key = insert.executeAndReturnKey(param);
 			order.setId(key.intValue());
 		}else {
-			String sql = "UPDATE orders SET user_id=:userId status=:status,total_price=:totalPrice,order_date=:orderDate,"
+			String sql = "UPDATE "+TABLE_NAME+" SET user_id=:userId status=:status,total_price=:totalPrice,order_date=:orderDate,"
 					+ "destination_name=:destinationName,destination_email=:destinationEmail,destination_zipcode=:destinationZipcode,"
 					+ "destination_address=:destinationAddress,destination_tel=:destinationTel,delivery_time=:deliveryTime,"
 					+ "payment_method=:paymentMethod WHERE id=:id;";
