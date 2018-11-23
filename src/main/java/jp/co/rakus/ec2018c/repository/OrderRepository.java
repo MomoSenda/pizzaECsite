@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -18,6 +19,7 @@ import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.Order;
 import jp.co.rakus.ec2018c.domain.OrderItem;
 import jp.co.rakus.ec2018c.domain.OrderTopping;
+import jp.co.rakus.ec2018c.domain.Topping;
 
 /**
  * ordersテーブルを操作するリポジトリ.
@@ -33,6 +35,7 @@ public class OrderRepository {
 	public static final String TABLE_NAME = "orders";
 	
 	//作成途中
+	/** 注文情報をOrderドメインに格納するResultSetExtractor */
 	private static final ResultSetExtractor<Order> ORDER_RESULT_SET_EXTRACTOR = (rs) ->{
 		Order order = null;
 		List<OrderItem> orderItemList = null;
@@ -61,25 +64,60 @@ public class OrderRepository {
 				order.setOrderItemList(orderItemList);
 				orderInitialProcessing = false;
 			}
+			
 			//OrderItemに値をセットする
 			if(rs.getInt("order_item_id") != beforeOrderItemId) {
 				orderItem = new OrderItem();
-				orderItemList.add(orderItem);
-				orderItem.setId(rs.getInt(""));
-				orderItem.setItemId(rs.getInt(""));
-				orderItem.setOrderId(rs.getInt(""));
-				orderItem.setQuantity(rs.getInt(""));
-				orderItem.setSize(rs.getString(""));
 				item = new Item();
 				orderToppingList = new ArrayList<>();
-				
+				orderItemList.add(orderItem);
+				orderItem.setId					(rs.getInt		("order_item_id"));
+				orderItem.setItemId				(rs.getInt		("item_id"));
+				orderItem.setOrderId			(rs.getInt		("order_id"));
+				orderItem.setQuantity			(rs.getInt		("order_item_quantity"));
+				orderItem.setSize				(rs.getString	("order_item_size").toCharArray()[0]);
+				orderItem.setItem				(item);
+				orderItem.setOrderToppingList	(orderToppingList);
+				//Itemに値をセットする
+				item.setId			(rs.getInt		("item_id"));
+				item.setName		(rs.getString	("item_name"));
+				item.setDescription	(rs.getString	("item_description"));
+				item.setPriceM		(rs.getInt		("item_price_m"));
+				item.setPriceL		(rs.getInt		("item_price_l"));
+				item.setImagePath	(rs.getString	("item_image_path"));
+				item.setDeleted		(rs.getBoolean	("item_deleted"));
 			}
+			
+			//OrderToppingに値をセットする
+			OrderTopping orderTopping = new OrderTopping();
+			Topping topping = new Topping();
+			orderTopping.setId			(rs.getInt("order_topping_id"));
+			orderTopping.setToppingId	(rs.getInt("topping_id"));
+			orderTopping.setOrderItemId	(rs.getInt("order_item_id"));
+			orderTopping.setTopping		(topping);
+			
+			//Toppingに値をセットする
+			topping.setId		(rs.getInt		("topping_id"));
+			topping.setName		(rs.getString	("topping_name"));
+			topping.setPriceM	(rs.getInt		("topping_price_m"));
+			topping.setPriceL	(rs.getInt		("topping_price_l"));
+			
+			//前のOrderItemのIdを保持する
+			beforeOrderItemId = rs.getInt("order_item_id");
 		}
 		
 		return order;
 	};
 	
-	//作成途中
+	/**
+	 * 注文情報を取得する.
+	 * userIdとstatusを使用して注文情報を取得する
+	 * 
+	 * @param userId ユーザID
+	 * @param status 注文の状態
+	 * @return 取得した注文情報を格納したOrderオブジェクト
+	 * 注文が見つからなかった場合null
+	 */
 	public Order findByUserIdAndStatus(Integer userId,Integer status){
 		String sql = "SELECT o.id order_id,o.user_id user_id,o.status order_status,o.total_price order_total_price,"
 				+ "o.order_date order_date,o.destination_name order_destination_name,o.destination_email order_destination_email,"
@@ -90,9 +128,10 @@ public class OrderRepository {
 				+ "i.deleted item_deleted,ot.id order_topping_id,ot.topping_id topping_id,t.name topping_name,t.price_m topping_price_m,"
 				+ "t.price_l topping_price_l FROM orders o JOIN order_items oi ON o.id = oi.order_id "
 				+ "JOIN order_toppings ot ON oi.id = ot.order_item_id INNER JOIN items i ON oi.item_id = i.id "
-				+ "INNER JOIN toppings t ON ot.topping_id = t.id ORDER BY i.name ,t.name; ";
-		
-		return null;
+				+ "INNER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id =:status AND o.status=:userId ORDER BY i.name ,t.name; ";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
+		Order order = template.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
+		return order;
 	}
 	
 	private SimpleJdbcInsert insert;
