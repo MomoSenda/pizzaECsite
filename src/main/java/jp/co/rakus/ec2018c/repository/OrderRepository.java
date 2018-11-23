@@ -1,5 +1,8 @@
 package jp.co.rakus.ec2018c.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,10 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.Order;
+import jp.co.rakus.ec2018c.domain.OrderItem;
+import jp.co.rakus.ec2018c.domain.OrderTopping;
 
 /**
  * ordersテーブルを操作するリポジトリ.
@@ -28,10 +34,48 @@ public class OrderRepository {
 	
 	//作成途中
 	private static final ResultSetExtractor<Order> ORDER_RESULT_SET_EXTRACTOR = (rs) ->{
-		Order order = new Order();
+		Order order = null;
+		List<OrderItem> orderItemList = null;
+		boolean orderInitialProcessing = true;
+		int beforeOrderItemId = 0;
+		OrderItem orderItem = null;
+		Item item = null;
+		List<OrderTopping> orderToppingList = null;
 		while(rs.next()) {
-			
+			//初回だけOrderに値をセットする
+			if(orderInitialProcessing) {
+				order = new Order();
+				orderItemList = new ArrayList<>();
+				order.setId					(rs.getInt		("order_id"));
+				order.setUserId				(rs.getInt		("user_id"));
+				order.setStatus				(rs.getInt		("order_status"));
+				order.setTotalPrice			(rs.getInt		("order_total_price"));
+				order.setOrderDate			(rs.getDate		("order_date"));
+				order.setDestinationName	(rs.getString	("order_destination_name"));
+				order.setDestinationEmail	(rs.getString	("order_destination_email"));
+				order.setDestinationZipcode	(rs.getString	("order_destination_zipcode"));
+				order.setDestinationAddress	(rs.getString	("order_destination_address"));
+				order.setDestinationTel		(rs.getString	("order_destination_tel"));
+				order.setDeliveryTime		(rs.getTimestamp("order_delivery_time"));
+				order.setPaymentMethod		(rs.getInt		("order_payment_method"));
+				order.setOrderItemList(orderItemList);
+				orderInitialProcessing = false;
+			}
+			//OrderItemに値をセットする
+			if(rs.getInt("order_item_id") != beforeOrderItemId) {
+				orderItem = new OrderItem();
+				orderItemList.add(orderItem);
+				orderItem.setId(rs.getInt(""));
+				orderItem.setItemId(rs.getInt(""));
+				orderItem.setOrderId(rs.getInt(""));
+				orderItem.setQuantity(rs.getInt(""));
+				orderItem.setSize(rs.getString(""));
+				item = new Item();
+				orderToppingList = new ArrayList<>();
+				
+			}
 		}
+		
 		return order;
 	};
 	
@@ -74,9 +118,11 @@ public class OrderRepository {
 	public Order save(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		if(order.getId() == null) {
+			//ordersテーブルのINSERT処理
 			Number key = insert.executeAndReturnKey(param);
 			order.setId(key.intValue());
 		}else {
+			//ordersテーブルのUPDATE処理
 			String sql = "UPDATE "+TABLE_NAME+" SET user_id=:userId status=:status,total_price=:totalPrice,order_date=:orderDate,"
 					+ "destination_name=:destinationName,destination_email=:destinationEmail,destination_zipcode=:destinationZipcode,"
 					+ "destination_address=:destinationAddress,destination_tel=:destinationTel,delivery_time=:deliveryTime,"
