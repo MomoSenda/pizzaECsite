@@ -128,8 +128,8 @@ public class OrderRepository {
 				+ "i.deleted item_deleted,ot.id order_topping_id,ot.topping_id topping_id,t.name topping_name,t.price_m topping_price_m,"
 				+ "t.price_l topping_price_l FROM orders o JOIN order_items oi ON o.id = oi.order_id "
 				+ "JOIN order_toppings ot ON oi.id = ot.order_item_id INNER JOIN items i ON oi.item_id = i.id "
-				+ "INNER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id =:status AND o.status=:userId ORDER BY i.name ,t.name; ";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
+				+ "INNER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id=:user_id AND o.status=:status ORDER BY i.name ,t.name; ";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
 		Order order = template.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
 		return order;
 	}
