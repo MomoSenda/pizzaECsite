@@ -34,7 +34,6 @@ public class OrderRepository {
 	/** ordersのテーブル名の定数 */
 	public static final String TABLE_NAME = "orders";
 	
-	//作成途中
 	/** 注文情報をOrderドメインに格納するResultSetExtractor */
 	private static final ResultSetExtractor<Order> ORDER_RESULT_SET_EXTRACTOR = (rs) ->{
 		Order order = null;
@@ -88,20 +87,23 @@ public class OrderRepository {
 				item.setDeleted		(rs.getBoolean	("item_deleted"));
 			}
 			
+			
 			//OrderToppingに値をセットする
-			OrderTopping orderTopping = new OrderTopping();
-			Topping topping = new Topping();
-			orderTopping.setId			(rs.getInt("order_topping_id"));
-			orderTopping.setToppingId	(rs.getInt("topping_id"));
-			orderTopping.setOrderItemId	(rs.getInt("order_item_id"));
-			orderTopping.setTopping		(topping);
-			
-			//Toppingに値をセットする
-			topping.setId		(rs.getInt		("topping_id"));
-			topping.setName		(rs.getString	("topping_name"));
-			topping.setPriceM	(rs.getInt		("topping_price_m"));
-			topping.setPriceL	(rs.getInt		("topping_price_l"));
-			
+			if(rs.getInt("order_topping_id") != 0) {
+				OrderTopping orderTopping = new OrderTopping();
+				Topping topping = new Topping();
+				orderTopping.setId			(rs.getInt("order_topping_id"));
+				orderTopping.setToppingId	(rs.getInt("topping_id"));
+				orderTopping.setOrderItemId	(rs.getInt("order_item_id"));
+				orderTopping.setTopping		(topping);
+				
+				//Toppingに値をセットする
+				topping.setId		(rs.getInt		("topping_id"));
+				topping.setName		(rs.getString	("topping_name"));
+				topping.setPriceM	(rs.getInt		("topping_price_m"));
+				topping.setPriceL	(rs.getInt		("topping_price_l"));
+			}
+				
 			//前のOrderItemのIdを保持する
 			beforeOrderItemId = rs.getInt("order_item_id");
 		}
