@@ -85,15 +85,17 @@
 						<tr>
 							<c:forEach var="item" items="${itemList}" varStatus="status">
 								<td>
-									<a href="${pageContext.request.contextPath}/viewItemList/list/${item.id}">
+									
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
 										<img src="<c:out value="${item.imagePath}" />"class="img-responsive img-rounded" width="200" height="200">
 									</a><br>
-									<a href="item_detail.html">
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
 										<c:out value="${item.name}"></c:out><br>
 									</a><br>
+									
 									<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
 									<fmt:formatNumber value="${item.priceM}" pattern="###,###"/>円（税抜き）<br>
-									<span class="price">&nbsp;L&nbsp;</span>&nbsp;&nbsp;
+									<span class="price">&nbsp;Ｌ&nbsp;</span>&nbsp;&nbsp;
 									<fmt:formatNumber value="${item.priceL}" pattern="###,###"/>円（税抜き）<br>
 									<br>
 								</td>

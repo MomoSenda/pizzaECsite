@@ -17,6 +17,14 @@ public class Topping {
 	/**	Lサイズのトッピング価格 */
 	private Integer priceL;
 	
+	public Topping() {}
+	public Topping(Integer id, String name, Integer priceM, Integer priceL) {
+		this.id=id;
+		this.name=name;
+		this.priceM=priceM;
+		this.priceL=priceL;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
