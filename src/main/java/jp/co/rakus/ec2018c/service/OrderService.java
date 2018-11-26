@@ -1,5 +1,9 @@
 package jp.co.rakus.ec2018c.service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,7 @@ import jp.co.rakus.ec2018c.repository.OrderRepository;
 public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
+	private static final String TIMESTAMP_FORMAT = "yyyy-MM-dd,h";
 	
 	/**
 	 * UserId,Statusを指定して注文情報を取得する.
@@ -26,5 +31,29 @@ public class OrderService {
 	 */
 	public Order findByUserIdAndStatus(Integer userId,Integer status) {
 		return orderRepository.findByUserIdAndStatus(userId, status);
+	}
+	
+	/**
+	 * Orderの更新を行う.
+	 * 
+	 * @param order 更新情報が入れられたOrderドメイン
+	 */
+	public void update(Order order) {
+		orderRepository.save(order);
+	}
+	
+	/**
+	 * 入力される日付をTimestampに変換する.
+	 * 
+	 * @param day 変換するString型の日時
+	 * @return 変換された日時のTimestamp
+	 */
+	public Timestamp stringToTimestamp(String day) {
+		try {
+			return new Timestamp(new SimpleDateFormat(TIMESTAMP_FORMAT).parse(day).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
