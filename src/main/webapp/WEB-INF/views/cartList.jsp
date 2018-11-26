@@ -29,7 +29,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="item_list.html"> <!-- 企業ロゴ --> <img
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/viewItemList/list"> <!-- 企業ロゴ --> <img
 						alt="main log" src="img/header_logo.png" height="35">
 					</a>
 				</div>
@@ -38,7 +38,7 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="${pageContext.request.contextPath}/viewCart" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
 						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
 						<a href="item_list.html" class="navbar-link">ログアウト</a>
@@ -56,7 +56,7 @@
 		</c:if><br>
 		
 		<!-- ショッピングカートに商品が1つ以上入っている場合 -->
-		<c:if test="${!order==null}">
+		<c:if test="${order != null}">
 
 		<!-- table -->
 		<div class="row">
@@ -92,14 +92,15 @@
 						
 						
 						<!-- 注文商品の表示 -->
-				
 						<c:forEach var="orderItem" items="${order.orderItemList}" >
 							<tr>
 							<td>
 								<div class="center">
-									<img src="img/1.jpg"
+									<!-- 注文商品の画像 -->
+									<img src="<c:out value="${orderItem.item.imagePath}"/>"
 										class="img-responsive img-rounded" width="100" height="300"><br>
-									<c:out value="${orderItem.item.name}" /><!-- 注文商品名 -->
+									<!-- 注文商品名 -->
+									<c:out value="${orderItem.item.name}" />
 								</div>
 							</td>
 							<td>
@@ -113,7 +114,7 @@
 									<fmt:formatNumber value="${orderItem.item.priceL}" pattern="###,###"/>円
 								</c:if>
 								<!-- 商品の個数 -->
-								<c:out value="${orderItem.quantity}" />個
+								&nbsp;&nbsp;<c:out value="${orderItem.quantity}" />個
 								
 							</td>
 							<td>
@@ -159,8 +160,8 @@
 				<div class="form-group text-center">
 					
 					<span id="total-price">合計：<fmt:formatNumber value="${order.calcTotalPrice}" pattern="###,###"/>円</span><br>
-					<span id="total-price">消費税：8,000円</span><br>
-					<span id="total-price">ご注文金額合計：38,000 (税込)</span>
+					<span id="total-price">消費税：<fmt:formatNumber value="${order.tax}" pattern="###,###"/>円</span><br>
+					<span id="total-price">ご注文金額合計：<fmt:formatNumber value="${order.calcTotalPrice + order.tax}" pattern="###,###"/>円</span>
 				</div>
 			</div>
 		</div>
@@ -178,6 +179,7 @@
 	</div>
 	
 	</c:if>
+	
 	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
