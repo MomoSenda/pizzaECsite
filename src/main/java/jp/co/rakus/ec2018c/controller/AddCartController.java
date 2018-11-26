@@ -56,7 +56,7 @@ public class AddCartController {
 		
 		service.addCart(itemId, userId, quantity, size, toppingIdList);
 		
-		return "redirect:";
+		return "redirect:/viewCart";
 	}
 	
 	

@@ -48,7 +48,7 @@ public class Order {
 	 * @return
 	 */
 	public int getTax() {
-		return (int)(totalPrice*TAX_RATE);
+		return (int)(getCalcTotalPrice()*TAX_RATE);
 	}
 
 	/**

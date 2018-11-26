@@ -92,6 +92,7 @@ public class OrderRepository {
 			if(rs.getInt("order_topping_id") != 0) {
 				OrderTopping orderTopping = new OrderTopping();
 				Topping topping = new Topping();
+				orderToppingList.add(orderTopping);
 				orderTopping.setId			(rs.getInt("order_topping_id"));
 				orderTopping.setToppingId	(rs.getInt("topping_id"));
 				orderTopping.setOrderItemId	(rs.getInt("order_item_id"));
@@ -129,8 +130,8 @@ public class OrderRepository {
 				+ "i.description item_description,i.price_m item_price_m,i.price_l item_price_l,i.image_path item_image_path,"
 				+ "i.deleted item_deleted,ot.id order_topping_id,ot.topping_id topping_id,t.name topping_name,t.price_m topping_price_m,"
 				+ "t.price_l topping_price_l FROM orders o JOIN order_items oi ON o.id = oi.order_id "
-				+ "JOIN order_toppings ot ON oi.id = ot.order_item_id INNER JOIN items i ON oi.item_id = i.id "
-				+ "INNER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id=:user_id AND o.status=:status ORDER BY oi.id ,t.name; ";
+				+ "LEFT OUTER JOIN order_toppings ot ON oi.id = ot.order_item_id INNER JOIN items i ON oi.item_id = i.id "
+				+ "LEFT OUTER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id=:user_id AND o.status=:status ORDER BY oi.id ,t.name; ";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
 		Order order = template.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
 		return order;
