@@ -1,5 +1,8 @@
 package jp.co.rakus.ec2018c.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 /**
  * ユーザー関連のリクエストパラメーターが入るフォーム.
  * 
@@ -9,18 +12,31 @@ package jp.co.rakus.ec2018c.form;
 public class RegisterUserForm {
 
 	/** 名前 */
+	@NotEmpty (message = "名前を入力してください")
 	private String name;
+	
 	/** メールアドレス */
+	@Email( message = "メールアドレスの形式が間違っています")
+	@NotEmpty ( message = "メールアドレスを入力してください")
 	private String email;
+	
 	/** 郵便番号 */
+	@NotEmpty( message = "郵便番号を入力してください")
 	private String zipcode;
+	
 	/** 住所 */
 	private String address;
+	
 	/** 電話番号 */
+	@NotEmpty ( message = "電話番号を入力してください")
 	private String telephone;
+	
 	/** パスワード */
+	@NotEmpty ( message = "パスワードを入力してください")
 	private String password;
+	
 	/** 確認用パスワード */
+	@NotEmpty ( message = "確認用パスワードを入力してください")
 	private String checkPassword;
 
 	@Override
