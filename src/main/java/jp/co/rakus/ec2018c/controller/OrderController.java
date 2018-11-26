@@ -14,6 +14,7 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
+	//未注文のstatus
 	public Integer UNORDERED_ID = 0;
 	
 	/**
