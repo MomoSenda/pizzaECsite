@@ -82,7 +82,7 @@ public class RegisterUserController {
 		BeanUtils.copyProperties(form, user);
 		user = registerUserService.save(user);
 		
-		return "redirect";
+		return "redirect:/";
 	}
 	
 
