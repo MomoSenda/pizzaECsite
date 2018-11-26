@@ -35,10 +35,11 @@ public class RegisterUserController {
 	
 	/**
 	 * メンバー情報登録画面を表示する.
+	 * @param model 
 	 * @return　メンバー情報登録画面
 	 */
 	@RequestMapping("/form")
-	public String form() {
+	public String form(Model model) {
 		return "registeruser";
 	}
 	
@@ -57,9 +58,11 @@ public class RegisterUserController {
 								Model model) {
 		
 		
+		
+		
 		//パスワード確認
 		if(!form.getPassword().equals(form.getCheckPassword())) {
-			result.rejectValue("checkPassword", "","パスワードを確認してください");
+			result.rejectValue("checkPassword", "","パスワードと入力が異なります");
 		}
 		
 		
@@ -71,7 +74,7 @@ public class RegisterUserController {
 		
 		
 		if(result.hasErrors()) {
-			return form();
+			return form(model);
 		}
 		
 		//フォームの内容をドメインに格納
