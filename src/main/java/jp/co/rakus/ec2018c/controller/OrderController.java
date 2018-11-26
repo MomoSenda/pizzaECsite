@@ -1,11 +1,17 @@
 package jp.co.rakus.ec2018c.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec2018c.domain.Order;
+import jp.co.rakus.ec2018c.form.OrderDestinationForm;
 import jp.co.rakus.ec2018c.service.OrderService;
 
 @Controller
@@ -16,6 +22,11 @@ public class OrderController {
 	
 	//未注文のstatus
 	public Integer UNORDERED_ID = 0;
+	
+	@ModelAttribute
+	public OrderDestinationForm setUpForm() {
+		return new OrderDestinationForm();
+	}
 	
 	/**
 	 * 注文情報を表示する.
@@ -34,5 +45,36 @@ public class OrderController {
 		Order order = orderService.findByUserIdAndStatus(userId, status);
 		model.addAttribute("order", order);
 		return "orderconfirm";
+	}
+	
+	@RequestMapping("/order")
+	public String order(@Validated OrderDestinationForm form,BindingResult result) {
+		Integer status = UNORDERED_ID; 
+		//TODO:ログインフィルターを実装したらここでuserIdにログインユーザのidを入れる(仮で0を入れている)
+		Integer userId = 1;
+		
+		Order order = orderService.findByUserIdAndStatus(userId, status);
+
+		//formの内容をorderに詰める
+		order.setStatus(Integer.valueOf(form.getPaymentMethod()));
+		order.setTotalPrice(order.getCalcTotalPrice());
+		order.setOrderDate(new Date());
+		order.setDestinationName(form.getDestinationName());
+		order.setDestinationEmail(form.getDestinationEmail());
+		order.setDestinationZipcode(form.getDestinationZipcode());
+		order.setDestinationAddress(form.getDestinationAddress());
+		order.setDestinationTel(form.getDestinationTel());
+		order.setDeliveryTime(orderService.stringToTimestamp(form.getDeliveryTime()));
+		order.setPaymentMethod(Integer.valueOf(form.getPaymentMethod()));
+		
+		orderService.update(order);
+		
+		//注文完了画面にリダイレクトで遷移
+		return "redirect:/order/finish";
+	}
+	
+	@RequestMapping("/finish")
+	public String orderFinished() {
+		return "orderfinished";
 	}
 }

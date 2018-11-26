@@ -127,7 +127,7 @@
 		</div>
 
 		<!-- table -->
-		<form action="order_finished.html">
+		<form:form action="/order/order" modelAttribute="orderDestinationForm">
 			<div class="row">
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
@@ -138,32 +138,32 @@
 								<td>
 									<div class="text-center">お名前</div>
 								</td>
-								<td><input type="text"></td>
+								<td><form:input path="destinationName"/></td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">メールアドレス</div>
 								</td>
-								<td><input type="text"></td>
+								<td><form:input path="destinationEmail"/></td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">郵便番号</div>
 								</td>
-								<td><input type="text">&nbsp;&nbsp;
+								<td><form:input path="destinationZipcode"/>&nbsp;&nbsp;
 									<button>住所検索</button></td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">住所</div>
 								</td>
-								<td><input type="text"></td>
+								<td><form:input path="destinationAddress"/></td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">電話番号</div>
 								</td>
-								<td><input type="text"></td>
+								<td><form:input path="destinationTel"/></td>
 							</tr>
 							<tr>
 								<td>
@@ -177,7 +177,7 @@
 													for="inputPeriod">配達日時を入力してください</label>
 											</div>
 											<div class="col-sm-5">
-												<input type="date" name="name" id="name"
+												<input type="date" name="deliveryTime" id="deliveryTime"
 													class="form-control input-sm" />
 											</div>
 
@@ -185,23 +185,23 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<label class="radio-inline"> <input type="radio"
-													name="responsibleCompany" checked="checked"> 10時
+													name="deliveryTime" checked="checked" id="deliveryTime" value="10"> 10時
 												</label> <label class="radio-inline"> <input type="radio"
-													name="responsibleCompany"> 11時
+													name="deliveryTime" id="deliveryTime" value="11"> 11時
 												</label> <label class="radio-inline"> <input type="radio"
-													name="responsibleCompany"> 12時
+													name="deliveryTime" id="deliveryTime" value="12"> 12時
 												</label><br> <label class="radio-inline"> <input
-													type="radio" name="responsibleCompany"> 13時
+													type="radio" name="deliveryTime" id="deliveryTime" value="13"> 13時
 												</label> <label class="radio-inline"> <input type="radio"
-													name="responsibleCompany"> 14時
+													name="deliveryTime" id="deliveryTime" value="14"> 14時
 												</label> <label class="radio-inline"> <input type="radio"
-													name="responsibleCompany"> 15時
+													name="deliveryTime" id="deliveryTime" value="15"> 15時
 												</label><br> <label class="radio-inline"> <input
-													type="radio" name="responsibleCompany"> 16時
+													type="radio" name="deliveryTime" id="deliveryTime" value="16"> 16時
 												</label> <label class="radio-inline"> <input type="radio"
-													name="responsibleCompany"> 17時
+													name="deliveryTime" id="deliveryTime" value="17"> 17時
 												</label> <label class="radio-inline"> <input type="radio"
-													name="responsibleCompany"> 18時
+													name="deliveryTime" id="deliveryTime" value="18"> 18時
 												</label><br>
 											</div>
 										</div>
@@ -228,7 +228,7 @@
 									<div class="row">
 										<div class="col-sm-12">
 											<label class="radio-inline"> <input type="radio"
-												name="responsibleCompany" checked="checked"> 代金引換
+												name="paymentMethod" checked="checked" id="paymentMethod" value="1"> 代金引換
 											</label>
 										</div>
 									</div>
@@ -242,7 +242,7 @@
 									<div class="row">
 										<div class="col-sm-12">
 											<label class="radio-inline"> <input type="radio"
-												name="responsibleCompany" checked="checked">
+												name="paymentMethod" checked="checked" id="paymentMethod" value="2">
 												クレジットカード
 											</label><br> <br>
 										</div>
@@ -261,7 +261,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+		</form:form>
 	</div>
 	<!-- end container -->
 	<script
