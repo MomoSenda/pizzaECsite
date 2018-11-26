@@ -29,7 +29,7 @@
 						alt="main log" src="img/header_logo.png" height="35">
 					</a>
 				</div>
-
+ 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
@@ -49,9 +49,10 @@
 							<legend>ユーザ登録</legend>
 							<div class="form-group">
 								<label for="inputName">名前:</label><label
-									class="control-label" style="color: red" for="inputError">名前を入力してください</label>
+									class="control-label" style="color: red" for="inputError"></label>
+								<form:errors path="name" cssStyle="color:red" element="div"/>
 								<input type="text" id="inputName" class="form-control"
-									placeholder="Name">
+									placeholder="Name" path="name">
 							</div>
 							<div class="form-group">
 								<label for="inputEmail">メールアドレス:</label><label
