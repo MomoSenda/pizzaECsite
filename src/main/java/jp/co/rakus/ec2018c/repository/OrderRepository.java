@@ -165,7 +165,7 @@ public class OrderRepository {
 			order.setId(key.intValue());
 		}else {
 			//ordersテーブルのUPDATE処理
-			String sql = "UPDATE "+TABLE_NAME+" SET user_id=:userId status=:status,total_price=:totalPrice,order_date=:orderDate,"
+			String sql = "UPDATE "+TABLE_NAME+" SET user_id=:userId,status=:status,total_price=:totalPrice,order_date=:orderDate,"
 					+ "destination_name=:destinationName,destination_email=:destinationEmail,destination_zipcode=:destinationZipcode,"
 					+ "destination_address=:destinationAddress,destination_tel=:destinationTel,delivery_time=:deliveryTime,"
 					+ "payment_method=:paymentMethod WHERE id=:id;";
