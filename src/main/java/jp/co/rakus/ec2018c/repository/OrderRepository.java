@@ -92,6 +92,7 @@ public class OrderRepository {
 			if(rs.getInt("order_topping_id") != 0) {
 				OrderTopping orderTopping = new OrderTopping();
 				Topping topping = new Topping();
+				orderToppingList.add(orderTopping);
 				orderTopping.setId			(rs.getInt("order_topping_id"));
 				orderTopping.setToppingId	(rs.getInt("topping_id"));
 				orderTopping.setOrderItemId	(rs.getInt("order_item_id"));
