@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Order {
 	/** 消費税 */
-	public static final double TAX_RATE = 1.08;
+	public static final double TAX_RATE = 0.08;
 	/** 主キー */
 	private Integer id;
 	/** ユーザid */
