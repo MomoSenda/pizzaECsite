@@ -3,9 +3,11 @@ package jp.co.rakus.ec2018c.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec2018c.domain.Order;
+import jp.co.rakus.ec2018c.form.OrderDestinationForm;
 import jp.co.rakus.ec2018c.service.OrderService;
 
 @Controller
@@ -16,6 +18,11 @@ public class OrderController {
 	
 	//未注文のstatus
 	public Integer UNORDERED_ID = 0;
+	
+	@ModelAttribute
+	public OrderDestinationForm setUpForm() {
+		return new OrderDestinationForm();
+	}
 	
 	/**
 	 * 注文情報を表示する.
