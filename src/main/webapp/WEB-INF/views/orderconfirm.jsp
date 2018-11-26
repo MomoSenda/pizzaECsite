@@ -118,9 +118,9 @@
 			<div class="col-xs-offset-2 col-xs-8">
 				<div class="form-group text-center">
 					<span id="total-price">消費税：<fmt:formatNumber
-							value="${order.calcTotalPrice}" pattern="###,###円" /></span><br> <span
+							value="${order.tax}" pattern="###,###円" /></span><br> <span
 						id="total-price">ご注文金額合計：<fmt:formatNumber
-							value="${order.tax}" pattern="###,###円" />(税込)
+							value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込)
 					</span>
 				</div>
 			</div>
