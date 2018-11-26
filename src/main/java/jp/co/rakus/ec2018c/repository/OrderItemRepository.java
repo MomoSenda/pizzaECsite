@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -53,5 +54,15 @@ public class OrderItemRepository {
 		return orderItem;
 	}
 	
-
+	/**
+	 * 注文商品の情報を削除する.
+	 * 
+	 * @param OrderItemId 注文商品のID
+	 */
+	public void deleteById (Integer orderItemId) {
+		String sql = "WITH deleted AS (DELETE FROM order_items WHERE id = :id RETURNING id)\r\n"
+					+ "DELETE FROM order_toppings WHERE id IN (SELECT id FROM deleted);";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderItemId);
+		namedParameterJdbcTemplate.update(sql, param);
+	}
 }
