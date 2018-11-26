@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,8 @@
 		<div class="row">
 			<div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
 				<div class="well">
-					<form method="post" action="itemList.jsp">
+					<form:form action="${pageContext.request.contextPath}/login">
+						
 						<fieldset>
 							<legend>
 								ログイン
@@ -64,7 +66,7 @@
 								<button type="submit" class="btn btn-primary">ログイン</button>
 							</div>
 						</fieldset>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
