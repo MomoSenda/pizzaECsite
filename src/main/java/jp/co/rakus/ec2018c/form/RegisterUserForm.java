@@ -25,6 +25,7 @@ public class RegisterUserForm {
 	private String zipcode;
 	
 	/** 住所 */
+	@NotBlank( message = "住所を入力してください")
 	private String address;
 	
 	/** 電話番号 */
