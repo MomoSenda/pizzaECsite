@@ -32,7 +32,7 @@ public class OrderController {
 		Integer userId = 1;
 		
 		Order order = orderService.findByUserIdAndStatus(userId, status);
-		model.addAttribute("order", order);
+		model.addAttribute("orderitems", order);
 		return "orderconfirm";
 	}
 }
