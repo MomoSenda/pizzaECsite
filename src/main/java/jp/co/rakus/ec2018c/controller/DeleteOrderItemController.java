@@ -30,11 +30,9 @@ public class DeleteOrderItemController {
 	@RequestMapping("/deleteByOrderItemId")
 	public String deleteByOrderItemId(Integer orderItemId) {
 		
-		orderItemId = 3;
-		
 		service.deleteByOrderItemId(orderItemId);
 		
-		return "viewcartController";
+		return "redirect:/viewCart";
 	}
 	
 
