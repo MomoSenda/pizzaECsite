@@ -1,5 +1,7 @@
 package jp.co.rakus.ec2018c.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +52,13 @@ public class OrderController {
 		Integer status = UNORDERED_ID; 
 		//TODO:ログインフィルターを実装したらここでuserIdにログインユーザのidを入れる(仮で0を入れている)
 		Integer userId = 1;
+		
 		Order order = orderService.findByUserIdAndStatus(userId, status);
+
 		//formの内容をorderに詰める
+		order.setStatus(Integer.valueOf(form.getPaymentMethod()));
+		order.setTotalPrice(order.getCalcTotalPrice());
+		order.setOrderDate(new Date());
 		order.setDestinationName(form.getDestinationName());
 		order.setDestinationEmail(form.getDestinationEmail());
 		order.setDestinationZipcode(form.getDestinationZipcode());
@@ -60,16 +67,14 @@ public class OrderController {
 		order.setDeliveryTime(orderService.stringToTimestamp(form.getDeliveryTime()));
 		order.setPaymentMethod(Integer.valueOf(form.getPaymentMethod()));
 		
-		System.out.println("name:"+form.getDestinationName());
-		System.out.println("email:"+form.getDestinationEmail());
-		System.out.println("zipcode:"+form.getDestinationZipcode());
-		System.out.println("address:"+form.getDestinationAddress());
-		System.out.println("tel:"+form.getDestinationTel());
-		System.out.println("time:"+orderService.stringToTimestamp(form.getDeliveryTime()));
-		System.out.println("pay:"+Integer.valueOf(form.getPaymentMethod()));
-		//orderService.update(order);
+		orderService.update(order);
 		
 		//注文完了画面にリダイレクトで遷移
-		return "";
+		return "redirect:/order/finish";
+	}
+	
+	@RequestMapping("/finish")
+	public String orderFinished() {
+		return "orderfinished";
 	}
 }
