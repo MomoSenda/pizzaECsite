@@ -112,6 +112,88 @@ public class OrderRepository {
 		return order;
 	};
 	
+	/** 注文履歴をOrderのListに格納するResultSetExtractor */
+	private static final ResultSetExtractor<List<Order>> ORDER_HISTORY_RESULT_SET_EXTRACTOR = (rs) ->{
+		List<Order> orders = new ArrayList<>();
+		Order order = null;
+		List<OrderItem> orderItemList = null;
+		int beforeOrderId = 0;
+		int beforeOrderItemId = 0;
+		OrderItem orderItem = null;
+		Item item = null;
+		List<OrderTopping> orderToppingList = null;
+		while(rs.next()) {
+			//初回だけOrderに値をセットする
+			if(beforeOrderId != rs.getInt("order_id")) {
+				order = new Order();
+				orders.add(order);
+				orderItemList = new ArrayList<>();
+				order.setId					(rs.getInt		("order_id"));
+				order.setUserId				(rs.getInt		("user_id"));
+				order.setStatus				(rs.getInt		("order_status"));
+				order.setTotalPrice			(rs.getInt		("order_total_price"));
+				order.setOrderDate			(rs.getDate		("order_date"));
+				order.setDestinationName	(rs.getString	("order_destination_name"));
+				order.setDestinationEmail	(rs.getString	("order_destination_email"));
+				order.setDestinationZipcode	(rs.getString	("order_destination_zipcode"));
+				order.setDestinationAddress	(rs.getString	("order_destination_address"));
+				order.setDestinationTel		(rs.getString	("order_destination_tel"));
+				order.setDeliveryTime		(rs.getTimestamp("order_delivery_time"));
+				order.setPaymentMethod		(rs.getInt		("order_payment_method"));
+				order.setOrderItemList(orderItemList);
+			}
+			
+			//OrderItemに値をセットする
+			if(rs.getInt("order_item_id") != beforeOrderItemId) {
+				orderItem = new OrderItem();
+				item = new Item();
+				orderToppingList = new ArrayList<>();
+				orderItemList.add(orderItem);
+				orderItem.setId					(rs.getInt		("order_item_id"));
+				orderItem.setItemId				(rs.getInt		("item_id"));
+				orderItem.setOrderId			(rs.getInt		("order_id"));
+				orderItem.setQuantity			(rs.getInt		("order_item_quantity"));
+				orderItem.setSize				(rs.getString	("order_item_size").toCharArray()[0]);
+				orderItem.setItem				(item);
+				orderItem.setOrderToppingList	(orderToppingList);
+				//Itemに値をセットする
+				item.setId			(rs.getInt		("item_id"));
+				item.setName		(rs.getString	("item_name"));
+				item.setDescription	(rs.getString	("item_description"));
+				item.setPriceM		(rs.getInt		("item_price_m"));
+				item.setPriceL		(rs.getInt		("item_price_l"));
+				item.setImagePath	(rs.getString	("item_image_path"));
+				item.setDeleted		(rs.getBoolean	("item_deleted"));
+			}
+			
+			
+			//OrderToppingに値をセットする
+			if(rs.getInt("order_topping_id") != 0) {
+				OrderTopping orderTopping = new OrderTopping();
+				Topping topping = new Topping();
+				orderToppingList.add(orderTopping);
+				orderTopping.setId			(rs.getInt("order_topping_id"));
+				orderTopping.setToppingId	(rs.getInt("topping_id"));
+				orderTopping.setOrderItemId	(rs.getInt("order_item_id"));
+				orderTopping.setTopping		(topping);
+				
+				//Toppingに値をセットする
+				topping.setId		(rs.getInt		("topping_id"));
+				topping.setName		(rs.getString	("topping_name"));
+				topping.setPriceM	(rs.getInt		("topping_price_m"));
+				topping.setPriceL	(rs.getInt		("topping_price_l"));
+			}
+			
+			
+			//前のOrderのIdを保持する
+			beforeOrderId = rs.getInt("order_id");
+			//前のOrderItemのIdを保持する
+			beforeOrderItemId = rs.getInt("order_item_id");
+		}
+		
+		return orders;
+	};
+	
 	/**
 	 * 注文情報を取得する.
 	 * userIdとstatusを使用して注文情報を取得する
@@ -135,6 +217,44 @@ public class OrderRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("user_id", userId).addValue("status", status);
 		Order order = template.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
 		return order;
+	}
+
+	/**
+	 * 注文履歴を取得する.
+	 * userIdとstatusのリストを使用して注文情報を取得する
+	 * 
+	 * @param userId ユーザID
+	 * @param statusList 注文の状態
+	 * @return 取得した注文情報を格納したList<Order>オブジェクト
+	 * 注文が見つからなかった場合null
+	 */
+	public List<Order> findByUserIdAndStatusList(Integer userId,List<Integer> statusList){
+		String sql = "SELECT o.id order_id,o.user_id user_id,o.status order_status,o.total_price order_total_price,"
+				+ "o.order_date order_date,o.destination_name order_destination_name,o.destination_email order_destination_email,"
+				+ "o.destination_zipcode order_destination_zipcode,o.destination_address order_destination_address,"
+				+ "o.destination_tel order_destination_tel,o.delivery_time order_delivery_time,o.payment_method order_payment_method,"
+				+ "oi.id order_item_id,oi.item_id item_id,oi.quantity order_item_quantity,oi.size order_item_size,i.name item_name,"
+				+ "i.description item_description,i.price_m item_price_m,i.price_l item_price_l,i.image_path item_image_path,"
+				+ "i.deleted item_deleted,ot.id order_topping_id,ot.topping_id topping_id,t.name topping_name,t.price_m topping_price_m,"
+				+ "t.price_l topping_price_l FROM orders o JOIN order_items oi ON o.id = oi.order_id "
+				+ "LEFT OUTER JOIN order_toppings ot ON oi.id = ot.order_item_id INNER JOIN items i ON oi.item_id = i.id "
+				+ "LEFT OUTER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id=:user_id";
+		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource().addValue("user_id", userId);
+		for(int i = 1;i <= statusList.size();i++) {
+			if(i == 1) {
+				sql = sql + " AND o.status=:status"+i;
+			}else {
+				sql = sql + " OR o.status=:status"+i;				
+			}
+			mapSqlParameterSource.addValue("status"+i, statusList.get(i-1));
+		}
+		sql = sql + " ORDER BY oi.id ,t.name; ";
+		SqlParameterSource param = mapSqlParameterSource;
+		List<Order> orders = template.query(sql, param, ORDER_HISTORY_RESULT_SET_EXTRACTOR);
+		if(orders.isEmpty()) {
+			return null;
+		}
+		return orders;
 	}
 	
 	private SimpleJdbcInsert insert;
