@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.Topping;
+import jp.co.rakus.ec2018c.form.AddCartForm;
 import jp.co.rakus.ec2018c.service.ShowItemDetailService;
 
 /**
@@ -23,6 +25,11 @@ import jp.co.rakus.ec2018c.service.ShowItemDetailService;
 public class ShowItemDetailController {
 	@Autowired
 	private ShowItemDetailService  showItemDetailService;
+	
+	@ModelAttribute
+	public AddCartForm setUpForm() {
+		return new AddCartForm();
+	}
 
 	/**
 	 * 商品の詳細情報を取得して、画面に表示する.

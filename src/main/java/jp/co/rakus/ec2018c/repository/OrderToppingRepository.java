@@ -18,9 +18,6 @@ public class OrderToppingRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
 	private SimpleJdbcInsert insert;
 	
 	/**
@@ -43,7 +40,7 @@ public class OrderToppingRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(orderTopping);
 		Number key = insert.executeAndReturnKey(param);
 		orderTopping.setId(key.intValue());
-
+		
 		return orderTopping;
 	}
 	

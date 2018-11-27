@@ -16,8 +16,8 @@ public class AddCartForm {
 	private String quantity;
 	/** 注文商品のサイズ　*/
 	private String size;
-	/** 注文商品のサイズ　*/
-	private List<Integer> toppingList;
+	/** 注文商品のトッピング　*/
+	private List<Integer> toppingIdList;
 	
 	public Integer getIntItemId() {
 		return Integer.parseInt(itemId);
@@ -50,11 +50,11 @@ public class AddCartForm {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	public List<Integer> getToppingList() {
-		return toppingList;
+	public List<Integer> getToppingIdList() {
+		return toppingIdList;
 	}
-	public void setToppingList(List<Integer> toppingList) {
-		this.toppingList = toppingList;
+	public void setToppingIdList(List<Integer> toppingIdList) {
+		this.toppingIdList = toppingIdList;
 	}
 	
 

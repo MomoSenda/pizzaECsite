@@ -50,7 +50,7 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<form action="${pageContext.request.contextPath}/addcart" method="post">
+		<form:form modelAttribute="addCartForm" action="${pageContext.request.contextPath}/addCart" method="post" >
 		<div class="row">
 			<div class="col-xs-offset-2 col-xs-8">
 
@@ -77,14 +77,13 @@
 								</div>
 								<div class="col-sm-12">
 									<label class="radio-inline"> 
-										<input type="radio"
-											name="responsibleCompany" checked="checked">
+										<form:radiobutton
+											path="size" value="M" checked="checked"/>
 										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
 										<fmt:formatNumber value="${item.priceM}" pattern="###,###"/>円（税抜き）<br>
 									</label>
 									<label class="radio-inline"> 
-										<input type="radio"
-											name="responsibleCompany"> 
+										<form:radiobutton path="size" value="L"/> 
 										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;
 										<fmt:formatNumber value="${item.priceL}" pattern="###,###"/>円（税抜き）<br>
 									</label>
@@ -101,37 +100,40 @@
 									<label for="inputResponsibleCompany">
 										トッピング：&nbsp;1つにつき
 										<span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;
-										<fmt:formatNumber value="${topping.priceM}" pattern="###,###"/>円（税抜き）<br>
+										<fmt:formatNumber value="${toppingList.get(0).priceM}" pattern="###,###"/>円（税抜き）<br>
 										<span>&nbsp;Ｌ</span>&nbsp;&nbsp;
-										<fmt:formatNumber value="${topping.priceL}" pattern="###,###"/>円（税抜き）<br>
+										<fmt:formatNumber value="${toppingList.get(0).priceL}" pattern="###,###"/>円（税抜き）<br>
 									</label>
 								</div>
 								<div class="col-sm-12">
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">オニオン
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">チーズ
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">ピーマン
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">ロースハム
-									</label><br>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">ほうれん草
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">ぺパロニ
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">グリルナス
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" value="">あらびきソーセージ
-									</label>
+										<c:forEach var="topping" items="${toppingList}">
+										<label class="checkbox-inline">
+											<form:checkbox path="toppingIdList" value="${topping.id}"/><c:out value="${topping.name}"/>
+										</label>
+										</c:forEach>
 								</div>
+									
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">チーズ -->
+<!-- 									</label> -->
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">ピーマン -->
+<!-- 									</label> -->
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">ロースハム -->
+<!-- 									</label><br> -->
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">ほうれん草 -->
+<!-- 									</label> -->
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">ぺパロニ -->
+<!-- 									</label> -->
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">グリルナス -->
+<!-- 									</label> -->
+<!-- 									<label class="checkbox-inline"> -->
+<!-- 										<input type="checkbox" value="">あらびきソーセージ -->
+<!-- 									</label> -->
 							</div>
 						</div>
 					</div>
@@ -143,8 +145,8 @@
 								<div class="col-xs-5 col-sm-5">
 									<label for="">数量:</label>
 									<label class="control-label"
-										style="color: red" for="inputError">数量を選択してください</label> <select
-										name="area" class="form-control">
+										style="color: red" for="inputError">数量を選択してください</label>
+										<select name="quantity" class="form-control">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -175,6 +177,8 @@
 					<div class="col-xs-offset-2 col-xs-3">
 						<div class="form-group">
 							<p>
+								<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
+								<input type="hidden" name="userId" value="2">
 								<input class="form-control btn btn-warning btn-block"
 									type="submit" value="カートに入れる">
 							</p>
@@ -184,7 +188,7 @@
 				</div>
 			</div>
 		</div>
-		</form>
+		</form:form>
 
 	</div>
 	<!-- end container -->
