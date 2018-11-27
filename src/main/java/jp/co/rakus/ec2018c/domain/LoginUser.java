@@ -18,6 +18,7 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
 	/** ユーザー情報 */
 	private final User user;
 	
+	
 	/**
 	 * 通常のメンバー情報に加え、認可用ロールを設定する.
 	 * 
