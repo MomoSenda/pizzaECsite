@@ -3,11 +3,14 @@ package jp.co.rakus.ec2018c.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec2018c.domain.LoginUser;
+import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.AddCartForm;
 import jp.co.rakus.ec2018c.service.AddCartService;
 
@@ -38,7 +41,12 @@ public class AddCartController {
 	 * @return ショッピングカートリストを表示するコントローラー.
 	 */
 	@RequestMapping("/addCart")
-	public String addCart(Integer userId ,AddCartForm addCartForm) {
+	public String addCart(@AuthenticationPrincipal LoginUser loginUser ,AddCartForm addCartForm) {
+		
+		
+		//ログイン認証からユーザー情報を取得し、ユーザーIDに代入.
+		User user = loginUser.getUser();
+		Integer userId = user.getId();
 		
 		//フォームで受け取ったリクエストパラメータを対応するデータ型に変換する.
 		Integer itemId = addCartForm.getIntItemId();
