@@ -69,14 +69,14 @@ public class AddCartService {
 		orderItem.setOrderId(orderId);
 		orderItem.setQuantity(quantity);
 		orderItem.setSize(size);
-		Integer orderItemId = orderItemRepository.save(orderItem).getId();
+		orderItem.setId(orderItemRepository.save(orderItem).getId());
 
 		// 注文トッピングの情報を登録する.
 		for (Integer toppingId : toppingIdList) {
 			OrderTopping orderTopping = new OrderTopping();
 			orderTopping.setToppingId(toppingId);
-			orderTopping.setOrderItemId(orderItemId);
-			orderToppingRepository.save(orderTopping);
+			orderTopping.setOrderItemId(orderItem.getId());
+			orderTopping.setId(orderToppingRepository.save(orderTopping).getId());
 		}
 
 	}

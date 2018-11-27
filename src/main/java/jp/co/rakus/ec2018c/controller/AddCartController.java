@@ -26,7 +26,7 @@ public class AddCartController {
 	private AddCartService service;
 	
 	@ModelAttribute
-	public AddCartForm setUpAddCartForm() {
+	public AddCartForm setUpForm() {
 		return new AddCartForm();
 	}
 	
@@ -37,14 +37,14 @@ public class AddCartController {
 	 * @param addcartForm　注文する商品のリクエストパラメータが入ったフォーム
 	 * @return ショッピングカートリストを表示するコントローラー.
 	 */
-	@RequestMapping("/addcart")
-	public String addCart(Integer userId ,AddCartForm addcartForm) {
+	@RequestMapping("/addCart")
+	public String addCart(Integer userId ,AddCartForm addCartForm) {
 		
 		//フォームで受け取ったリクエストパラメータを対応するデータ型に変換する.
-		Integer itemId = addcartForm.getIntItemId();
-		Integer quantity = addcartForm.getIntQuantity();
-		Character size = addcartForm.getCharSize();
-		List<Integer> toppingIdList = addcartForm.getToppingList();
+		Integer itemId = addCartForm.getIntItemId();
+		Integer quantity = addCartForm.getIntQuantity();
+		Character size = addCartForm.getCharSize();
+		List<Integer> toppingIdList = addCartForm.getToppingIdList();
 
 //		userId = 1;
 //		Integer itemId = 1;

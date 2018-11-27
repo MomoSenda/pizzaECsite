@@ -77,12 +77,17 @@ public class RegisterUserController {
 			return form(model);
 		}
 		
+		
+		//パスワードの暗号化し、formに設定
+		form.setPassword(registerUserService.encodePassword(form.getPassword()));
+		
+		
 		//フォームの内容をドメインに格納
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
 		user = registerUserService.save(user);
 		
-		return "redirect";
+		return "redirect:/";
 	}
 	
 

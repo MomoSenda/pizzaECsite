@@ -41,7 +41,7 @@ public class ToppingRepository {
 	 */
 	public List<Topping> findAll(){
 		List<Topping> toppingList = template.query(
-				"SELECT id,name,price_m,price_l FROM items ORDER BY name DESC",
+				"SELECT id,name,price_m,price_l FROM toppings ORDER BY name DESC",
 				TOPPING_ROW_MAPPER);
 		return toppingList;
 	}

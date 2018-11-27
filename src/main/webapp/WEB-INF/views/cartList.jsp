@@ -142,10 +142,10 @@
 							<td>
 								<div class="text-center">
 									<!-- 注文商品を削除 -->
-									<form action="${pageContext.request.contextPath}/deleteByOrderItemId" method="post">
+									<form:form action="${pageContext.request.contextPath}/deleteByOrderItemId" method="post">
 										<input type="hidden" name="orderItemId" value="<c:out value="${orderItem.id}"/>">
 										<input type="submit" class="btn btn-primary" value="削除">
-									</form>
+									</form:form>
 								</div>
 							</td>
 							</tr>
@@ -169,10 +169,10 @@
 		<div class="row">
 			<div class="col-xs-offset-5 col-xs-3">
 				<div class="form-group">
-					<form action="order_confirm.html">
+					<form:form action="${pageContext.request.contextPath}/order/orderconfirm" method="post">
 						<input class="form-control btn btn-warning btn-block"
 							type="submit" value="注文に進む">
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
