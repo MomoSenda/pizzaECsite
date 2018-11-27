@@ -2,6 +2,8 @@ package jp.co.rakus.ec2018c.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class AddCartController {
 	@Autowired
 	private AddCartService service;
 	
+	@Autowired
+	private HttpSession session;
+	
 	@ModelAttribute
 	public AddCartForm setUpForm() {
 		return new AddCartForm();
@@ -43,10 +48,17 @@ public class AddCartController {
 	@RequestMapping("/addCart")
 	public String addCart(@AuthenticationPrincipal LoginUser loginUser ,AddCartForm addCartForm) {
 		
-		
 		//ログイン認証からユーザー情報を取得し、ユーザーIDに代入.
-		User user = loginUser.getUser();
-		Integer userId = user.getId();
+		//もしログインしていなかったら、セッションIDを取得する.
+		Integer userId;
+		
+		
+		if(loginUser == null) {
+			userId = Integer.parseInt(session.getId().replaceAll("[A-Z]+", "").substring(0, 8));
+		}else {
+			User user = loginUser.getUser();
+			userId = user.getId();
+		}
 		
 		//フォームで受け取ったリクエストパラメータを対応するデータ型に変換する.
 		Integer itemId = addCartForm.getIntItemId();
