@@ -4,11 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec2018c.domain.LoginUser;
 import jp.co.rakus.ec2018c.domain.Order;
+import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.repository.OrderHistoryService;
 
 @Controller
@@ -19,9 +22,10 @@ public class OrderHistoryController {
 	private OrderHistoryService orderHistoryService;
 	
 	@RequestMapping("/history")
-	public String index(Model model) {
-		//TODO:ログインフィルターを実装したらここでuserIdにログインユーザのidを入れる(仮で0を入れている)
-		Integer userId = 1;
+	public String index(Model model,@AuthenticationPrincipal LoginUser loginUser) {
+		User user = loginUser.getUser();
+		//ログイン中のユーザを取得する
+		Integer userId = user.getId();
 
 		List<Order> orders = orderHistoryService.findByUserIdAndStatusList(userId, ORDERED_ID);
 		model.addAttribute("orders", orders);
