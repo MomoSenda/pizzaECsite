@@ -182,7 +182,7 @@
 						<div class="form-group">
 							<p>
 								<input type="hidden" name="itemId" value="<c:out value="${item.id}"/>">
-								<input type="hidden" name="userId" value="2">
+								<input type="hidden" name="userId" value="1">
 								<input class="form-control btn btn-warning btn-block"
 									type="submit" value="カートに入れる">
 							</p>
