@@ -34,7 +34,7 @@ public class ViewCartController {
 	@RequestMapping("/viewCart")
 	public String viewCart(Integer userId ,Integer status,Model model) {
 		
-		userId = 1;
+		userId = 2;
 		status = 0;
 		
 		Order order = service.viewCart(userId, status);
