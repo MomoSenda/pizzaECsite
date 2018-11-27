@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests() 					// 認可に関する設定
-				.antMatchers("/", "/registeruser/form", "/registeruser/create", "/viewCart").permitAll() // 「/」などのパスはすべてのユーザーに許可
+				.antMatchers("/", "/registeruser/form", "/registeruser/create", "/viewCart","/deleteByOrderItemId").permitAll() // 「/」などのパスはすべてのユーザーに許可
 				.anyRequest().authenticated();		 // それ以外のパスは認証が必要
 
 		http.formLogin() 							// ログインに関する設定
@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.invalidateHttpSession(true); 		// true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 
 		// Exceptionハンドラ
-		//http.exceptionHandling().accessDeniedPage("/403.jsp"); // 不正なリクエストを検知しました
+		http.exceptionHandling().accessDeniedPage("/403.jsp"); // 不正なリクエストを検知しました
 
 	}
 
