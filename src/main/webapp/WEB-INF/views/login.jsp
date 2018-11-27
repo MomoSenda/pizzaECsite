@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<a href="奥村さんがつくったショッピングカートのjspをここへ" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="/viewCart" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -44,6 +45,7 @@
 		<div class="row">
 			<div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
 				<div class="well">
+					<div class="error"><c:out value="${loginError}"></c:out></div>
 					<form:form action="${pageContext.request.contextPath}/login">
 						
 						<fieldset>
