@@ -1,8 +1,8 @@
 $(function(){
 	
 	$('.size').change(function(){
+		alart("size");
 		calc();
-
 	});
 	
 	$('.toppingList').change(function() {
@@ -20,6 +20,5 @@ $(function(){
     	console.log("サイズ："+ str);
     	console.log("トッピング："+ cnt);
     	console.log("枚数："+ quantity);
-    	  return "null";
     	};
 });
