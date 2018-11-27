@@ -2,8 +2,6 @@ package jp.co.rakus.ec2018c.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -30,8 +28,8 @@ public class AddCartController {
 	@Autowired
 	private AddCartService service;
 	
-	@Autowired
-	private HttpSession session;
+//	@Autowired
+//	private HttpSession session;
 	
 	@ModelAttribute
 	public AddCartForm setUpForm() {
@@ -49,16 +47,21 @@ public class AddCartController {
 	public String addCart(@AuthenticationPrincipal LoginUser loginUser ,AddCartForm addCartForm) {
 		
 		//ログイン認証からユーザー情報を取得し、ユーザーIDに代入.
-		//もしログインしていなかったら、セッションIDを取得する.
-		Integer userId;
+		//もしログインしていなかったらログイン画面へ遷移.
 		
+//		Integer userId;
 		
-		if(loginUser == null) {
-			userId = Integer.parseInt(session.getId().replaceAll("[A-Z]+", "").substring(0, 8));
-		}else {
+//		if(loginUser == null) {
+//			userId = Integer.parseInt(session.getId().replaceAll("[A-Z]+", "").substring(0, 8));
+//		}else {
 			User user = loginUser.getUser();
-			userId = user.getId();
-		}
+			Integer userId = user.getId();
+//			Integer sessionId;
+//			sessionId = Integer.parseInt(session.getId().replaceAll("[A-Z]+", "").substring(0, 8));
+//			System.out.println(sessionId);
+//		}
+		
+//		System.out.println(userId);
 		
 		//フォームで受け取ったリクエストパラメータを対応するデータ型に変換する.
 		Integer itemId = addCartForm.getIntItemId();
