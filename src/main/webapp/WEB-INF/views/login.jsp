@@ -60,7 +60,7 @@
 							</div>
 							<div class="form-group">
 								<label for="inputPassword">パスワード:</label>
-								<input type="text" name="password" id="password" class="form-control"
+								<input type="password" name="password" id="password" class="form-control"
 									placeholder="Password">
 							</div>
 							<div class="form-group">

@@ -16,6 +16,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/zip_code.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -30,7 +33,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="item_list.html"> <!-- 企業ロゴ --> <img
+					<a class="navbar-brand" href="/viewItemList/list"> <!-- 企業ロゴ --> <img
 						alt="main log" src="/img/header_logo.png" height="35">
 					</a>
 				</div>
@@ -39,10 +42,10 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
-						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp; <a
-							href="item_list.html" class="navbar-link">ログアウト</a>
+						<a href="/viewCart" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="/orderhistory/history" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						<a href="/" class="navbar-link">ログイン</a>&nbsp;&nbsp; <a
+							href="/logout" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -151,7 +154,7 @@
 									<div class="text-center">郵便番号</div>
 								</td>
 								<td><form:input path="destinationZipcode"/>&nbsp;&nbsp;
-									<button>住所検索</button></td>
+									<button type="button" id="address">住所検索</button></td>
 							</tr>
 							<tr>
 								<td>

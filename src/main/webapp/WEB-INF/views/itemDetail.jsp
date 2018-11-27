@@ -18,6 +18,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/js/calc.js"></script>
+
 </head>
 <body>
 	<div class="container">
@@ -41,9 +44,9 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
-						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="/login" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="/viewCart" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="/orderhistory/history" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
+						<a href="/" class="navbar-link">ログイン</a>&nbsp;&nbsp;
 						<a href="/logout" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
@@ -110,7 +113,7 @@
 								<div class="col-sm-12">
 										<c:forEach var="topping" items="${toppingList}">
 										<label class="checkbox-inline">
-											<form:checkbox path="toppingIdList" value="${topping.id}" onclick="calc-totalprice()"/><c:out value="${topping.name}"/>
+											<form:checkbox path="toppingIdList" value="${topping.id}" onclick="calc()"/><c:out value="${topping.name}"/>
 										</label>
 										</c:forEach>
 								</div>
@@ -174,7 +177,7 @@
 						<div class="form-group">
 							<!-- 注文商品と注文トッピングの小計 -->
 							この商品の合計金額：
-							<fmt:formatNumber value="${orderItem.subTotal}" pattern="###,###"/>円(税抜)
+							<span id="totalprice">0</span>円(税抜)
 						</div>
 					</div>
 				</div>

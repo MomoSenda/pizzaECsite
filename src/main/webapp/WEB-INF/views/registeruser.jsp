@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 
 <link href="/css/bootstrap.css" rel="stylesheet">
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/zip_code2.js"></script>
 
 </head>
 
@@ -65,7 +68,7 @@
 								<label for="inputZipcode">郵便番号:</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
-									<input type="button" value="住所検索">
+									<input type="button" id="residence" value="住所検索">
 								<form:errors path="zipcode" cssStyle="color:red" element="div"/>
 								<form:input type="text" path="zipcode" id="inputZipcode" class="form-control"
 									placeholder="Zipcode"/>
@@ -92,7 +95,7 @@
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
 								<form:errors path="password" cssStyle="color:red" element="div"/>
-								<form:input type="text" path="password" id="inputPassword" class="form-control"
+								<form:input type="password" path="password" id="inputPassword" class="form-control"
 									placeholder="Password"/>
 							</div>
 							<div class="form-group">
@@ -100,7 +103,7 @@
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
 								<form:errors path="checkPassword" cssStyle="color:red" element="div"/>
-								<form:input type="text" path="checkPassword" id="inputConfirmationPassword" class="form-control"
+								<form:input type="password" path="checkPassword" id="inputConfirmationPassword" class="form-control"
 									placeholder="Confirmation Password"/>
 							</div>
 							<div class="form-group">
