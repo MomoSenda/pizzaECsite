@@ -38,7 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/img/**", "/js/**");
+		web.ignoring().antMatchers(	"/css/**",
+									"/img/**",
+									"/js/**",
+									"/fonts/**");
 	}
 
 	
@@ -65,8 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 													// 第2引数： true :認証後常に第1引数のパスに遷移
 													// false: 認証されてなくて一度ログイン画面に飛ばされてもログインしたら指定したURLに遷移
 				
-				.usernameParameter("email") // 認証時に使用するユーザー名のリクエストパラメーター名（今回はメールアドレス）
-				.passwordParameter("password"); // 認証時に使用するパスワードのリクエストパラメータ名
+				.usernameParameter("email") 		// 認証時に使用するユーザー名のリクエストパラメーター名（今回はメールアドレス）
+				.passwordParameter("password"); 	// 認証時に使用するパスワードのリクエストパラメータ名
 
 		http.logout() 								// ログアウトに関する設定
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout**")) // ログアウトさせる際に遷移させるパス
