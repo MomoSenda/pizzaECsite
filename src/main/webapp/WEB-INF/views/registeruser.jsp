@@ -92,7 +92,7 @@
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
 								<form:errors path="password" cssStyle="color:red" element="div"/>
-								<form:input type="text" path="password" id="inputPassword" class="form-control"
+								<form:input type="password" path="password" id="inputPassword" class="form-control"
 									placeholder="Password"/>
 							</div>
 							<div class="form-group">
@@ -100,7 +100,7 @@
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
 								<form:errors path="checkPassword" cssStyle="color:red" element="div"/>
-								<form:input type="text" path="checkPassword" id="inputConfirmationPassword" class="form-control"
+								<form:input type="password" path="checkPassword" id="inputConfirmationPassword" class="form-control"
 									placeholder="Confirmation Password"/>
 							</div>
 							<div class="form-group">
