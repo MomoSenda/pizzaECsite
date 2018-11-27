@@ -25,9 +25,6 @@ public class OrderItemRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
 	private SimpleJdbcInsert insert;
 	
 	/**
