@@ -1,6 +1,7 @@
 package jp.co.rakus.ec2018c.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jp.co.rakus.ec2018c.domain.User;
@@ -11,7 +12,8 @@ public class RegisterUserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	
 	
@@ -29,6 +31,12 @@ public class RegisterUserService {
 	
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+	
+	
+	public String encodePassword(String rawPassword) {
+		String encodedPassword = passwordEncoder.encode(rawPassword);
+		return encodedPassword;
 	}
 	
 	
