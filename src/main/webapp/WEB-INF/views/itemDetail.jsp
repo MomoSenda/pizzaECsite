@@ -16,6 +16,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<!--<script type="text/javascript" src="../../js/calc-totalprice"></script> -->
 </head>
 <body>
 	<div class="container">
@@ -30,7 +31,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="item_list.html"> <!-- 企業ロゴ -->
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/viewItemList/list"> <!-- 企業ロゴ -->
 						<img alt="main log" src="../../img/header_logo.png" height="35">
 					</a>
 				</div>
@@ -41,8 +42,8 @@
 					<p class="navbar-text navbar-right">
 						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-						<a href="item_list.html" class="navbar-link">ログアウト</a>
+						<a href="/login" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="/logout" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -108,7 +109,7 @@
 								<div class="col-sm-12">
 										<c:forEach var="topping" items="${toppingList}">
 										<label class="checkbox-inline">
-											<form:checkbox path="toppingIdList" value="${topping.id}"/><c:out value="${topping.name}"/>
+											<form:checkbox path="toppingIdList" value="${topping.id}" onclick="calc-totalprice()"/><c:out value="${topping.name}"/>
 										</label>
 										</c:forEach>
 								</div>
@@ -137,6 +138,7 @@
 							</div>
 						</div>
 					</div>
+				
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-8">
@@ -169,7 +171,9 @@
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="form-group">
-							<span id="total-price">この商品金額：38,000 円(税抜)</span>
+							<!-- 注文商品と注文トッピングの小計 -->
+							この商品の合計金額：
+							<fmt:formatNumber value="${orderItem.subTotal}" pattern="###,###"/>円(税抜)
 						</div>
 					</div>
 				</div>
