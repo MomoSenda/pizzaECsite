@@ -26,7 +26,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="item_list.html"> <!-- 企業ロゴ --> <img
+					<a class="navbar-brand" href="/viewItemList/list"> <!-- 企業ロゴ --> <img
 						alt="main log" src="/img/header_logo.png" height="35">
 					</a>
 				</div>
@@ -35,10 +35,10 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<p class="navbar-text navbar-right">
-						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
+						<a href="/viewCart" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="/orderhistory/history" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-						<a href="item_list.html" class="navbar-link">ログアウト</a>
+						<a href="/" class="navbar-link">ログイン</a>&nbsp;&nbsp;
+						<a href="/logout" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
