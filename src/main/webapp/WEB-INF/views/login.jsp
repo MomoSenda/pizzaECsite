@@ -47,7 +47,6 @@
 				<div class="well">
 					<div class="error"><c:out value="${loginError}"></c:out></div>
 					<form:form action="${pageContext.request.contextPath}/login">
-						
 						<fieldset>
 							<legend>
 								ログイン
@@ -56,12 +55,12 @@
 									class="control-label" style="color: red" for="inputError"></label>
 							<div class="form-group">
 								<label for="inputEmail">メールアドレス:</label>
-								<input type="text" id="inputEmail" class="form-control"
+								<input type="text" name="email" id="email" class="form-control"
 									placeholder="Email">
 							</div>
 							<div class="form-group">
 								<label for="inputPassword">パスワード:</label>
-								<input type="text" id="inputPassword" class="form-control"
+								<input type="text" name="password" id="password" class="form-control"
 									placeholder="Password">
 							</div>
 							<div class="form-group">
