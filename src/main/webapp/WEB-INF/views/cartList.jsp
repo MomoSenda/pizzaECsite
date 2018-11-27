@@ -169,7 +169,7 @@
 		<div class="row">
 			<div class="col-xs-offset-5 col-xs-3">
 				<div class="form-group">
-					<form action="order_confirm.html">
+					<form action="${pageContext.request.contextPath}/order/orderconfirm" method="post">
 						<input class="form-control btn btn-warning btn-block"
 							type="submit" value="注文に進む">
 					</form>
