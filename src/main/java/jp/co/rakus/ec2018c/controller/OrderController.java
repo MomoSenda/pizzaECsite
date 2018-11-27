@@ -3,6 +3,7 @@ package jp.co.rakus.ec2018c.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec2018c.domain.LoginUser;
 import jp.co.rakus.ec2018c.domain.Order;
+import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.OrderDestinationForm;
 import jp.co.rakus.ec2018c.service.OrderService;
 
@@ -36,11 +39,11 @@ public class OrderController {
 	 * @return 注文表示画面
 	 */
 	@RequestMapping("/orderconfirm")
-	public String index(Model model){
+	public String index(Model model,@AuthenticationPrincipal LoginUser loginUser){
 		Integer status = UNORDERED_ID; 
-		
-		//TODO:ログインフィルターを実装したらここでuserIdにログインユーザのidを入れる(仮で0を入れている)
-		Integer userId = 1;
+		//ログイン中のユーザを取得する
+		User user = loginUser.getUser();
+		Integer userId = user.getId();
 		
 		Order order = orderService.findByUserIdAndStatus(userId, status);
 		model.addAttribute("order", order);
@@ -48,10 +51,11 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(@Validated OrderDestinationForm form,BindingResult result) {
-		Integer status = UNORDERED_ID; 
-		//TODO:ログインフィルターを実装したらここでuserIdにログインユーザのidを入れる(仮で0を入れている)
-		Integer userId = 1;
+	public String order(@Validated OrderDestinationForm form,BindingResult result,@AuthenticationPrincipal LoginUser loginUser) {
+		Integer status = UNORDERED_ID;
+		//ログイン中のユーザを取得する
+		User user = loginUser.getUser();
+		Integer userId = user.getId();
 		
 		Order order = orderService.findByUserIdAndStatus(userId, status);
 
