@@ -19,6 +19,7 @@
 </head>
 <body>
 	<div class="container">
+		
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -38,11 +39,13 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
+					
 					<p class="navbar-text navbar-right">
 						<a href="cart_list.html" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="order_history.html" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-						<a href="item_list.html" class="navbar-link">ログアウト</a>
+						<a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;												
+						<a href="item_list.html" class="navbar-link">ログアウト</a>&nbsp;&nbsp;
+						
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
