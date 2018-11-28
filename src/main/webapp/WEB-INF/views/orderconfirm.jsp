@@ -159,6 +159,7 @@
 								<td>
 									<div class="text-center">お名前</div>
 								</td>
+								
 								<td>
 									<form:errors path="destinationName" cssStyle="color:red" element="div"/>
 									<form:input path="destinationName"/>
