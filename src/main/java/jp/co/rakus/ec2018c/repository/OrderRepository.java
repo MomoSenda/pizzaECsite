@@ -294,4 +294,15 @@ public class OrderRepository {
 		}
 		return order;
 	}
+	
+	/**
+	 * deleteメソッド.
+	 * 
+	 * @param id
+	 */
+	public void deleteById(Integer id) {
+		String sql = "DELETE FROM orders WHERE id=:id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		template.update(sql, param);
+	}
 }
