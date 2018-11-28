@@ -55,6 +55,7 @@ public class AddCartController {
 		
 		if(loginUser == null) {
 			userId = session.getId().hashCode();
+			session.setAttribute("sessionId", userId);
 		}else {
 			User user = loginUser.getUser();
 			userId = user.getId();
