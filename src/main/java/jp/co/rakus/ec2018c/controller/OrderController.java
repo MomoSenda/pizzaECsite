@@ -17,6 +17,12 @@ import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.OrderDestinationForm;
 import jp.co.rakus.ec2018c.service.OrderService;
 
+/**
+ * 注文処理を行うコントローラ.
+ * 
+ * @author kento.uemura
+ *
+ */
 @Controller
 @RequestMapping("/order")
 public class OrderController {
@@ -50,6 +56,15 @@ public class OrderController {
 		return "orderconfirm";
 	}
 	
+	/**
+	 * 注文する.
+	 * 
+	 * @param form 配達先情報が入ったフォーム
+	 * @param result リザルト
+	 * @param loginUser ログインユーザ情報
+	 * @return 注文完了画面
+	 * 入力フォームのエラーが起きたときは確認画面に戻す
+	 */
 	@RequestMapping("/order")
 	public String order(@Validated OrderDestinationForm form,BindingResult result,@AuthenticationPrincipal LoginUser loginUser) {
 		Integer status = UNORDERED_ID;
@@ -77,6 +92,11 @@ public class OrderController {
 		return "redirect:/order/finish";
 	}
 	
+	/**
+	 * 注文完了画面を表示する.
+	 * 
+	 * @return 注文完了画面
+	 */
 	@RequestMapping("/finish")
 	public String orderFinished() {
 		return "orderfinished";
