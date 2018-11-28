@@ -13,6 +13,7 @@
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/js/zip_code2.js"></script>
 
+
 </head>
 
 <body>
@@ -47,7 +48,7 @@
 	<div class="row">
 			<div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
 				<div class="well">
-					<form:form modelAttribute="registerUserForm" method="post" action="${pageContext.request.contextPath}/registeruser/create">
+					<form:form name="registerForm" modelAttribute="registerUserForm" method="post" action="${pageContext.request.contextPath}/registeruser/create">
 						<fieldset>
 							<legend>ユーザ登録</legend>
 							<div class="form-group">
@@ -108,7 +109,8 @@
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">登録</button>
-								<button type="reset" class="btn btn-primary">クリア</button>
+								<button type="button" class="jquery_reset_perfect">リセット</button>
+<!-- 								<button type="reset" class="btn btn-primary">クリア</button> -->
 							</div>
 						</fieldset>
 					</form:form>
