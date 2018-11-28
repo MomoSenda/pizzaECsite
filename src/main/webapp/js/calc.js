@@ -1,7 +1,6 @@
 $(function(){
 	
 	$('.size').change(function(){
-		alart("size");
 		calc();
 	});
 	
@@ -17,8 +16,18 @@ $(function(){
     	var str = $('.size:checked').val();
     	var cnt = $('.toppingList:checkbox:checked').length;
     	var quantity = $('.form-control option:selected').val();
-    	console.log("サイズ："+ str);
-    	console.log("トッピング："+ cnt);
-    	console.log("枚数："+ quantity);
+    	var total = 0;
+    	var priceM = $('#priceM').val();
+    	var priceL = $('#priceL').val();
+    	var toppingM = $('#toppingM').val();
+    	var toppingL = $('#toppingL').val();
+    	
+    	if( str == 'M' ){
+    		total = ( Number(priceM) + Number(cnt * toppingM) ) * quantity;
+    	}else{
+    		total = ( Number(priceL) + Number(cnt * toppingL) ) * quantity;
+    	}
+    	$('#total').text(total.toLocaleString());
     	};
+    	
 });
