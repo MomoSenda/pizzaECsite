@@ -2,6 +2,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -44,8 +45,25 @@
 					<p class="navbar-text navbar-right">
 						<a href="/viewCart" class="navbar-link">ショッピングカート</a>&nbsp;&nbsp;
 						<a href="/orderhistory/history" class="navbar-link">注文履歴</a>&nbsp;&nbsp;
-						<a href="/" class="navbar-link">ログイン</a>&nbsp;&nbsp; <a
-							href="/logout" class="navbar-link">ログアウト</a>
+						
+					<sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
+							<sec:authentication var="userName" property="principal.user.name" />
+					</sec:authorize>
+						
+					<c:choose>
+						<c:when test="${not empty userName}">
+							<span style="color:red">
+								<c:out value="${userName}" ></c:out>&nbsp;&nbsp;
+							</span>
+								<a href="/logout" class="navbar-link">ログアウト</a>
+						</c:when>
+							<c:otherwise>
+								<a href="/" class="navbar-link">ログイン</a>&nbsp;&nbsp; 
+							</c:otherwise>
+					</c:choose>
+						
+						
+						
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
