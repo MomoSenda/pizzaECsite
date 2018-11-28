@@ -48,7 +48,6 @@ public class ViewCartController {
 		
 		if(loginUser == null) {
 			userId = session.getId().hashCode();
-			System.out.println(userId);
 		}else {
 			User user = loginUser.getUser();
 			userId = user.getId();
