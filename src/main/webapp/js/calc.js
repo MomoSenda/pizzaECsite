@@ -23,10 +23,8 @@ $(function(){
     	var toppingL = $('#toppingL').val();
     	
     	if( str == 'M' ){
-    		console.log("Mサイズの金額は"+ priceM );
     		total = ( Number(priceM) + Number(cnt * toppingM) ) * quantity;
     	}else{
-    		console.log("Lサイズの金額は"+ priceL );
     		total = ( Number(priceL) + Number(cnt * toppingL) ) * quantity;
     	}
     	$('#total').text(total.toLocaleString());
