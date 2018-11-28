@@ -66,7 +66,14 @@ public class OrderController {
 	 * 入力フォームのエラーが起きたときは確認画面に戻す
 	 */
 	@RequestMapping("/order")
-	public String order(@Validated OrderDestinationForm form,BindingResult result,@AuthenticationPrincipal LoginUser loginUser) {
+	public String order(@Validated OrderDestinationForm form,
+									BindingResult result,Model model,
+									@AuthenticationPrincipal LoginUser loginUser) {
+		
+		if(result.hasErrors()) {
+			return index(model,loginUser);
+		}
+		
 		Integer status = UNORDERED_ID;
 		//ログイン中のユーザを取得する
 		User user = loginUser.getUser();

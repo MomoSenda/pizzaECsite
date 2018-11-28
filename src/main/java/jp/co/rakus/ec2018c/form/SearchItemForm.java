@@ -1,5 +1,7 @@
 package jp.co.rakus.ec2018c.form;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * 商品のリクエストパラメータを受け取るフォーム.
  * 
@@ -8,6 +10,7 @@ package jp.co.rakus.ec2018c.form;
  */
 public class SearchItemForm {
 	/**商品名*/
+	@NotEmpty(message="入力してください")
 	private String name;
 
 	public String getName() {

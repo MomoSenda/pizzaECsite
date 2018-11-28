@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests() 					// 認可に関する設定
 				.antMatchers("/", "/registeruser/form", "/registeruser/create", "/viewCart",
 							"/deleteByOrderItemId","/viewItemList/list","/ShowItemDetail/detail/{id}",
-							"/addCart").permitAll() // 「/」などのパスはすべてのユーザーに許可
+							"/addCart","/SearchItem/search").permitAll() // 「/」などのパスはすべてのユーザーに許可
 				.anyRequest().authenticated();		 // それ以外のパスは認証が必要
 
 		http.formLogin() 							// ログインに関する設定
@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.logout() 								// ログアウトに関する設定
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout**")) // ログアウトさせる際に遷移させるパス
-				.logoutSuccessUrl("/") 				// ログアウト後に遷移させるパス（ここではログイン画面を設定）
+				.logoutSuccessUrl("/viewItemList/list") 				// ログアウト後に遷移させるパス（ここではログイン画面を設定）
 				.deleteCookies("JSESSINID")			 // ログアウト後、Cookieに保存されているセッションIDを削除
 				.invalidateHttpSession(true); 		// true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 

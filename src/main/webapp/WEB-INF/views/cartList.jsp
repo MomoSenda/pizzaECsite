@@ -50,7 +50,7 @@
 					<c:choose>
 						<c:when test="${not empty userName}">
 							<span style="color:red">
-								<c:out value="${userName}" ></c:out>&nbsp;&nbsp;
+								<c:out value="${userName}　様" ></c:out>&nbsp;&nbsp;
 							</span>
 								<a href="${pageContext.request.contextPath}/logout" class="navbar-link">ログアウト</a>
 						</c:when>
@@ -114,10 +114,10 @@
 							<td>
 								<div class="center">
 									<!-- 注文商品の画像 -->
-									<img src="<c:out value="${orderItem.item.imagePath}"/>"
-										class="img-responsive img-rounded" width="100" height="300"><br>
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${orderItem.item.id}"><img src="<c:out value="${orderItem.item.imagePath}"/>"
+										class="img-responsive img-rounded" width="100" height="300"></a><br>
 									<!-- 注文商品名 -->
-									<c:out value="${orderItem.item.name}" />
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${orderItem.item.id}"><c:out value="${orderItem.item.name}" /></a>
 								</div>
 							</td>
 							<td>

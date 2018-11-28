@@ -54,7 +54,7 @@
 						<c:choose>
 							<c:when test="${not empty userName}">
 								<span style="color:red">
-									<c:out value="${userName}" ></c:out>&nbsp;&nbsp;
+									<c:out value="${userName}　様" ></c:out>&nbsp;&nbsp;
 								</span>
 									<a href="/logout" class="navbar-link">ログアウト</a>
 							</c:when>
@@ -85,6 +85,7 @@
 							<div class="form-group">
 								<label for="code" class="control-label col-sm-2">商品名</label>
 								<div class="col-sm-9">
+									<form:errors path="name" cssStyle="color:red" element="div"/>
 									<form:input path="name" class="form-control input-sm"/>
 								</div>
 							</div>

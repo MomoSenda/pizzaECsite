@@ -1,5 +1,9 @@
 package jp.co.rakus.ec2018c.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 /**
  * 送り先情報が格納されるフォーム.
@@ -8,18 +12,35 @@ package jp.co.rakus.ec2018c.form;
  *
  */
 public class OrderDestinationForm {
+	
 	/** 送り先名前 */
+	@NotBlank( message = "名前を入力してください")
 	private String destinationName;
+	
 	/** 送り先メールアドレス */
+	@Email ( message = "メールアドレスの形式が間違ってます")
+	@NotBlank ( message = "メールアドレスを入力してください")
 	private String destinationEmail;
+	
 	/** 送り先郵便番号 */
+	@NotBlank ( message = "郵便番号を入力してください")
+	@Size (min = 1, max = 7, message = "郵便番号は　数字7文字で入力してください")
 	private String destinationZipcode;
+	
 	/** 送り先住所 */
+	@NotBlank ( message = "住所を入力してください")
 	private String destinationAddress;
+	
 	/** 送り先電話番号 */
+	@NotBlank ( message = "電話番号を入力してください")
+	@Size ( min = 1, max = 11, message = "電話番号はハイフン無しで入力をお願いします")
 	private String destinationTel;
+	
 	/** 配達時間 */
+	//TODO:エラーチェックを行うために日時と時間を別のフィールドにする必要あり
+	//@NotEmpty ( message = "配達希望日時を選んでください")
 	private String deliveryTime;
+	
 	/** 支払い方法 */
 	private String paymentMethod;
 
