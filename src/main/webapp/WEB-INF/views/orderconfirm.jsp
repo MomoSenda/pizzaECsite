@@ -53,7 +53,7 @@
 					<c:choose>
 						<c:when test="${not empty userName}">
 							<span style="color:red">
-								<c:out value="${userName}" ></c:out>&nbsp;&nbsp;
+								<c:out value="${userName}　様" ></c:out>&nbsp;&nbsp;
 							</span>
 								<a href="/logout" class="navbar-link">ログアウト</a>
 						</c:when>
@@ -159,32 +159,46 @@
 								<td>
 									<div class="text-center">お名前</div>
 								</td>
-								<td><form:input path="destinationName"/></td>
+								<td>
+									<form:errors path="destinationName" cssStyle="color:red" element="div"/>
+									<form:input path="destinationName"/>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">メールアドレス</div>
 								</td>
-								<td><form:input path="destinationEmail"/></td>
+								<td>
+									<form:errors path="destinationEmail" cssStyle="color:red" element="div"/>
+									<form:input path="destinationEmail"/>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">郵便番号</div>
 								</td>
-								<td><form:input path="destinationZipcode"/>&nbsp;&nbsp;
+									<td>
+									<form:errors path="destinationZipcode" cssStyle="color:red" element="div"/>
+									<form:input path="destinationZipcode"/>&nbsp;&nbsp;
 									<button type="button" id="address">住所検索</button></td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">住所</div>
 								</td>
-								<td><form:input path="destinationAddress"/></td>
+								<td>
+									<form:errors path="destinationAddress" cssStyle="color:red" element="div"/>									
+									<form:input path="destinationAddress"/>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									<div class="text-center">電話番号</div>
 								</td>
-								<td><form:input path="destinationTel"/></td>
+								<td>
+									<form:errors path="destinationTel" cssStyle="color:red" element="div"/>									
+									<form:input path="destinationTel"/>
+								</td>
 							</tr>
 							<tr>
 								<td>
@@ -193,10 +207,7 @@
 								<td>
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-12">
-												<label class="control-label" style="color: red"
-													for="inputPeriod">配達日時を入力してください</label>
-											</div>
+											
 											<div class="col-sm-5">
 												<input type="date" name="deliveryTime" id="deliveryTime"
 													class="form-control input-sm" />
