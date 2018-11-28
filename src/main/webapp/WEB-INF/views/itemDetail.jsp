@@ -18,7 +18,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/js/calc.js"></script>
 
 </head>
@@ -82,14 +83,16 @@
 								</div>
 								<div class="col-sm-12">
 									<label class="radio-inline"> 
-										<form:radiobutton
+										<form:radiobutton class="size"
 											path="size" value="M" checked="checked"/>
 										<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
+										<input id="priceM" type="hidden" value="${item.priceM}">
 										<fmt:formatNumber value="${item.priceM}" pattern="###,###"/>円（税抜き）<br>
 									</label>
 									<label class="radio-inline"> 
-										<form:radiobutton path="size" value="L"/> 
+										<form:radiobutton class="size" path="size" value="L"/> 
 										<span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;
+										<input id="priceL" type="hidden" value="${item.priceL}">
 										<fmt:formatNumber value="${item.priceL}" pattern="###,###"/>円（税抜き）<br>
 									</label>
 								</div>
@@ -105,15 +108,17 @@
 									<label for="inputResponsibleCompany">
 										トッピング：&nbsp;1つにつき
 										<span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;
+										<input id="toppingM" type="hidden" value="${toppingList.get(0).priceM}">
 										<fmt:formatNumber value="${toppingList.get(0).priceM}" pattern="###,###"/>円（税抜き）<br>
 										<span>&nbsp;Ｌ</span>&nbsp;&nbsp;
+										<input id="toppingL" type="hidden" value="${toppingList.get(0).priceL}">
 										<fmt:formatNumber value="${toppingList.get(0).priceL}" pattern="###,###"/>円（税抜き）<br>
 									</label>
 								</div>
 								<div class="col-sm-12">
 										<c:forEach var="topping" items="${toppingList}">
 										<label class="checkbox-inline">
-											<form:checkbox path="toppingIdList" value="${topping.id}" onclick="calc()"/><c:out value="${topping.name}"/>
+											<form:checkbox class="toppingList" path="toppingIdList" value="${topping.id}"/><c:out value="${topping.name}"/>
 										</label>
 										</c:forEach>
 								</div>
@@ -176,8 +181,8 @@
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="form-group">
 							<!-- 注文商品と注文トッピングの小計 -->
-							この商品の合計金額：
-							<span id="totalprice">0</span>円(税抜)
+							<span id="total-price">この商品の合計金額：
+							<span id="total">0</span>円（税抜）</span>
 						</div>
 					</div>
 				</div>

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.rakus.ec2018c.domain.Item;
-import jp.co.rakus.ec2018c.form.RegisterUserForm;
 import jp.co.rakus.ec2018c.form.SearchItemForm;
 import jp.co.rakus.ec2018c.service.ViewItemListService;
 
