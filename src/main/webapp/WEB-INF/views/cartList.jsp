@@ -114,10 +114,10 @@
 							<td>
 								<div class="center">
 									<!-- 注文商品の画像 -->
-									<img src="<c:out value="${orderItem.item.imagePath}"/>"
-										class="img-responsive img-rounded" width="100" height="300"><br>
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${orderItem.item.id}"><img src="<c:out value="${orderItem.item.imagePath}"/>"
+										class="img-responsive img-rounded" width="100" height="300"></a><br>
 									<!-- 注文商品名 -->
-									<c:out value="${orderItem.item.name}" />
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${orderItem.item.id}"><c:out value="${orderItem.item.name}" /></a>
 								</div>
 							</td>
 							<td>
