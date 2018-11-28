@@ -2,6 +2,8 @@ package jp.co.rakus.ec2018c.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -28,8 +30,8 @@ public class AddCartController {
 	@Autowired
 	private AddCartService service;
 	
-//	@Autowired
-//	private HttpSession session;
+	@Autowired
+	private HttpSession session;
 	
 	@ModelAttribute
 	public AddCartForm setUpForm() {
@@ -49,19 +51,15 @@ public class AddCartController {
 		//ログイン認証からユーザー情報を取得し、ユーザーIDに代入.
 		//もしログインしていなかったらログイン画面へ遷移.
 		
-//		Integer userId;
+		Integer userId;
 		
-//		if(loginUser == null) {
-//			userId = Integer.parseInt(session.getId().replaceAll("[A-Z]+", "").substring(0, 8));
-//		}else {
+		if(loginUser == null) {
+			userId = session.getId().hashCode();
+		}else {
 			User user = loginUser.getUser();
-			Integer userId = user.getId();
-//			Integer sessionId;
-//			sessionId = Integer.parseInt(session.getId().replaceAll("[A-Z]+", "").substring(0, 8));
-//			System.out.println(sessionId);
-//		}
+			userId = user.getId();
+		}
 		
-//		System.out.println(userId);
 		
 		//フォームで受け取ったリクエストパラメータを対応するデータ型に変換する.
 		Integer itemId = addCartForm.getIntItemId();
@@ -69,14 +67,7 @@ public class AddCartController {
 		Character size = addCartForm.getCharSize();
 		List<Integer> toppingIdList = addCartForm.getToppingIdList();
 
-//		userId = 1;
-//		Integer itemId = 1;
-//		Integer quantity = 1;
-//		Character size = 'M';
-//		Integer toppingId = 1;
-//		List<Integer> toppingIdList = new ArrayList<>();
-//		toppingIdList.add(toppingId);
-		
+
 		service.addCart(itemId, userId, quantity, size, toppingIdList);
 		
 		return "redirect:/viewCart";
