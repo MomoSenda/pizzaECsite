@@ -85,6 +85,7 @@
 							<div class="form-group">
 								<label for="code" class="control-label col-sm-2">商品名</label>
 								<div class="col-sm-9">
+									<form:errors path="name" cssStyle="color:red" element="div"/>
 									<form:input path="name" class="form-control input-sm"/>
 								</div>
 							</div>
