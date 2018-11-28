@@ -34,6 +34,7 @@ public class OrderRepository {
 	/** ordersのテーブル名の定数 */
 	public static final String TABLE_NAME = "orders";
 	
+	//TODO:ResultSetExtractorを無駄に二つ使っているので余裕があれば修正する
 	/** 注文情報をOrderドメインに格納するResultSetExtractor */
 	private static final ResultSetExtractor<Order> ORDER_RESULT_SET_EXTRACTOR = (rs) ->{
 		Order order = null;
@@ -248,7 +249,7 @@ public class OrderRepository {
 			}
 			mapSqlParameterSource.addValue("status"+i, statusList.get(i-1));
 		}
-		sql = sql + " ORDER BY oi.id ,t.name; ";
+		sql = sql + " ORDER BY o.order_date DESC; ";
 		SqlParameterSource param = mapSqlParameterSource;
 		List<Order> orders = template.query(sql, param, ORDER_HISTORY_RESULT_SET_EXTRACTOR);
 		if(orders.isEmpty()) {
