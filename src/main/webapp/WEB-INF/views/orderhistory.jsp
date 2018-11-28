@@ -61,17 +61,39 @@
 					<tbody>
 						<tr>
 							<th>
-								<div class="text-center">商品名</div>
+								注文日：<fmt:formatDate value="${order.orderDate}" pattern="MM月dd日" />
 							</th>
 							<th>
-								<div class="text-center">サイズ、価格(税抜)、数量</div>
+								ご注文金額合計：<fmt:formatNumber value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込)
 							</th>
 							<th>
-								<div class="text-center">トッピング、価格(税抜)</div>
+								お届け先:<c:out value="${order.destinationAddress}"/>
 							</th>
 							<th>
-								<div class="text-center">小計</div>
+								<c:if test="${order.status == 1}">
+									<fmt:formatDate value="${order.deliveryTime}" pattern="MM月dd日 hh時"/>に配達予定(代金引換)
+								</c:if>
+								<c:if test="${order.status == 2}">
+									<fmt:formatDate value="${order.deliveryTime}" pattern="MM月dd日 hh時"/>に配達予定
+								</c:if>
+								<c:if test="${order.status == 3}">
+									<fmt:formatDate value="${order.deliveryTime}" pattern="MM月dd日"/>に配達済み
+								</c:if>
 							</th>
+						</tr>
+						<tr>
+							<td>
+								商品名
+							</td>
+							<td>
+								サイズ、価格(税抜)、数量
+							</td>
+							<td>
+								トッピング、価格(税抜)
+							</td>
+							<td>
+								小計
+							</td>
 						</tr>
 						<c:forEach var="orderitem" items="${order.orderItemList}">
 							<tr>
@@ -112,18 +134,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-xs-offset-2 col-xs-8">
-				<div class="form-group text-center">
-					<span id="total-price">消費税：<fmt:formatNumber
-							value="${order.tax}" pattern="###,###円" /></span><br> <span
-						id="total-price">ご注文金額合計：<fmt:formatNumber
-							value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込)
-					</span>
-				</div>
 			</div>
 		</div>
 		</c:forEach>
