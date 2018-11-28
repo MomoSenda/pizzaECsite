@@ -62,4 +62,16 @@ public class OrderItemRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", orderItemId);
 		namedParameterJdbcTemplate.update(sql, param);
 	}
+	
+	/**
+	 * OrderIdをアップデートする.
+	 * 
+	 * @param beforeOrderId 前のOrderId
+	 * @param afterOrderId 変更するOrderId
+	 */
+	public void updateToOrderId(Integer beforeOrderId,Integer afterOrderId) {
+		String sql = "UPDATE order_items SET order_id=:afterOrderId WHERE order_id=:beforeOrderId;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("beforeOrderId", beforeOrderId).addValue("afterOrderId", afterOrderId);
+		namedParameterJdbcTemplate.update(sql, param);
+	}
 }
