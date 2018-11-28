@@ -243,13 +243,13 @@ public class OrderRepository {
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource().addValue("user_id", userId);
 		for(int i = 1;i <= statusList.size();i++) {
 			if(i == 1) {
-				sql = sql + " AND o.status=:status"+i;
+				sql = sql + " AND ( o.status=:status"+i;
 			}else {
 				sql = sql + " OR o.status=:status"+i;				
 			}
 			mapSqlParameterSource.addValue("status"+i, statusList.get(i-1));
 		}
-		sql = sql + " ORDER BY o.order_date DESC; ";
+		sql = sql + " ) ORDER BY o.order_date DESC; ";
 		SqlParameterSource param = mapSqlParameterSource;
 		List<Order> orders = template.query(sql, param, ORDER_HISTORY_RESULT_SET_EXTRACTOR);
 		if(orders.isEmpty()) {
