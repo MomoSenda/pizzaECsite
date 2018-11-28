@@ -200,7 +200,7 @@
 						<div class="form-group">
 							<!-- 注文商品と注文トッピングの小計 -->
 							<span id="total-price">この商品の合計金額：
-							<span id="total">0</span>円（税抜）</span>
+							<span id="total"><fmt:formatNumber value="${item.priceM}" pattern="###,###"/></span>円（税抜）</span>
 						</div>
 					</div>
 				</div>
