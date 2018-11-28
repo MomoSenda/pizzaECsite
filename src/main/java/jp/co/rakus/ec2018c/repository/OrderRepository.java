@@ -249,7 +249,7 @@ public class OrderRepository {
 			}
 			mapSqlParameterSource.addValue("status"+i, statusList.get(i-1));
 		}
-		sql = sql + " ) ORDER BY o.order_date DESC; ";
+		sql = sql + " ) ORDER BY o.order_date DESC,o.id DESC,i.name; ";
 		SqlParameterSource param = mapSqlParameterSource;
 		List<Order> orders = template.query(sql, param, ORDER_HISTORY_RESULT_SET_EXTRACTOR);
 		if(orders.isEmpty()) {
