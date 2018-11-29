@@ -36,6 +36,7 @@ public class ViewCartController {
 	@Autowired
 	private RecommendService recommendService;
 
+	@Autowired
 	private ShoppingCartBadgeService shoppingCartBadgeService;
 	
 	@Autowired
