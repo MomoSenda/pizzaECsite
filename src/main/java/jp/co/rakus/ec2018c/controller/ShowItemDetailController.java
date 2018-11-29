@@ -40,7 +40,13 @@ public class ShowItemDetailController {
 	 */
 	@RequestMapping("/detail/{id}")
 	public String index(@PathVariable("id") int id,Model model) {
+		
 		Item item=showItemDetailService.load(id);
+		
+		if(item == null) {
+			return "404";
+		}
+
 		List<Topping> toppingList=showItemDetailService.findAll();
 		
 		model.addAttribute("item",item);
