@@ -30,7 +30,7 @@ public class ViewCartController {
 	private ViewCartService service;
 	
 	@Autowired
-	private ShoppingCartBadgeService badgeService;
+	private ShoppingCartBadgeService shoppingCartBadgeService;
 	
 	@Autowired
 	private HttpSession session;
@@ -62,7 +62,7 @@ public class ViewCartController {
 		
 		Order order = service.viewCart(userId, status);
 		if(order != null) {
-			Integer cartCount = badgeService.countByOrderId(order.getId());
+			Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
 			model.addAttribute("cartCount", cartCount);
 		}
 		model.addAttribute("order",order);
