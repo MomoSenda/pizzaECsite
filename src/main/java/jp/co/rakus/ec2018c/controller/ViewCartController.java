@@ -74,6 +74,7 @@ public class ViewCartController {
 		}
 		model.addAttribute("order",order);
 		
+		//未購入時、ランダムでおすすめ商品を取得.
 		List<Item> itemRecommendList = recommendService.recommend();
 		model.addAttribute("itemRecommendList",itemRecommendList);
 		
