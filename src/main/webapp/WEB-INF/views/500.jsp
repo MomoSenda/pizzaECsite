@@ -81,12 +81,18 @@
 		<div class="row">
 				<div class="form-group">
 				<div class="form-group text-center">
+				
+				<div class="imageContainer" align="center">
+					<img src="../../img/SORRY.png"  >
 
-		<span style="font-size:15pt;">Page not found 該当商品が見つかりませんでした。</span>
-		<br>
-		<br>
-		<br>
-		<br>
+				</div>
+					<span style="font-size:15pt;">申し訳ございません！ お探しのページは見つかりませんでした。</span>
+					<p>URLが間違っているか、ページが存在しません。</p>
+					<p>下記の商品一覧へ戻るのボタンより、トップページへお戻りください。</p>
+					<br>
+					<br>
+					<br>
+					<br>
 				<div class="imageContainer">
 					<img src="../../img/building_food_pizza.png" class="image" width="230" height="230">
 					<img src="../../img/pizza_mawashi.png" class="image" width="230" height="230">
@@ -106,7 +112,7 @@
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<table class="table table-striped">
 					<tbody>
-						<tr>　<h3>おすすめ商品</h3>
+						<tr>　<h3>オススメ商品</h3>
 						</tr>
 						<tr>
 							<c:forEach var="item" items="${itemRecommendList}" varStatus="status">
