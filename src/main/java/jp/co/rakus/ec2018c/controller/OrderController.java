@@ -18,6 +18,7 @@ import jp.co.rakus.ec2018c.domain.Order;
 import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.OrderDestinationForm;
 import jp.co.rakus.ec2018c.service.OrderService;
+import jp.co.rakus.ec2018c.service.ShoppingCartBadgeService;
 
 /**
  * 注文処理を行うコントローラ.
@@ -30,6 +31,8 @@ import jp.co.rakus.ec2018c.service.OrderService;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private ShoppingCartBadgeService shoppingCartBadgeService;
 	
 	//未注文のstatus
 	public Integer UNORDERED_ID = 0;
@@ -54,6 +57,8 @@ public class OrderController {
 		Integer userId = user.getId();
 		
 		Order order = orderService.findByUserIdAndStatus(userId, status);
+		Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
+		model.addAttribute("cartCount", cartCount);
 		model.addAttribute("order", order);
 		return "orderconfirm";
 	}
