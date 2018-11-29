@@ -182,6 +182,17 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="row">
+			<div class="col-xs-offset-5 col-xs-3">
+				<div class="form-group">
+					<form:form action="${pageContext.request.contextPath}/viewItemList/list" method="post">
+						<input class="form-control btn btn-warning btn-block"
+							type="submit" value="商品一覧に戻る">
+					</form:form>
+				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-xs-offset-5 col-xs-3">
