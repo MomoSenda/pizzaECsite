@@ -24,6 +24,7 @@ public class RegisterUserForm {
 	
 	/** 郵便番号 */
 	@NotBlank( message = "郵便番号を入力してください")
+	@Size ( min=1, max=7, message= "ハイフン無しで入力してください")
 	private String zipcode;
 	
 	/** 住所 */
