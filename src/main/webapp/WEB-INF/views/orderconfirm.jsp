@@ -206,7 +206,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationEmail" cssStyle="color:red" element="div"/>
-									<form:input path="destinationEmail" class="form-control" value="${user.email}"/>
+									<form:input path="destinationEmail"  class="form-control" value="${user.email}"/>
 								</td>
 							</tr>
 							<tr>
@@ -216,7 +216,7 @@
 									<td>
 									<form:errors path="destinationZipcode" cssStyle="color:red" element="div"/>
 									<div class="input-group">
-										<form:input path="destinationZipcode" class="form-control" value="${user.zipcode}"/>
+										<form:input path="destinationZipcode" pattern="^[0-9]{7}$" title="郵便番号はハイフン無しで入力してください" class="form-control" value="${user.zipcode}"/>
 										<span class="input-group-btn">
 											<button type="button" id="address" class="btn btn-default">住所検索</button>
 										</span>
@@ -237,8 +237,8 @@
 									<div class="text-center">電話番号</div>
 								</td>
 								<td>
-									<form:errors path="destinationTel" cssStyle="color:red" element="div"/>									
-									<form:input path="destinationTel" class="form-control" value="${user.telephone}"/>
+<%-- 									<form:errors path="destinationTel" cssStyle="color:red" element="div"/>									 --%>
+									<form:input path="destinationTel" pattern="^([0-9]{10,11})$" title="電話番号はハイフン無しで入力してください" class="form-control" value="${user.telephone}"/>
 								</td>
 							</tr>
 							<tr>
