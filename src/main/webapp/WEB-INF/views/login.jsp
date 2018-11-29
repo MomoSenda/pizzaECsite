@@ -8,6 +8,7 @@
 <title>ネットでピザ注文</title>
 
 <link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/login-out.css" rel="stylesheet">
 
 </head>
 <body>
@@ -63,8 +64,8 @@
 								<input type="password" name="password" id="password" class="form-control"
 									placeholder="Password">
 							</div>
-							<div class="form-group">
-								<button type="submit" class="btn btn-primary">ログイン</button>
+							<div class="form-group" id="csstest">
+									<button type="submit" class="btn btn-primary">ログイン</button>
 							</div>
 						</fieldset>
 					</form:form>
