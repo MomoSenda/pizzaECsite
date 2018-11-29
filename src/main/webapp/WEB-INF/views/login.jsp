@@ -64,7 +64,7 @@
 								<input type="password" name="password" id="password" class="form-control"
 									placeholder="Password">
 							</div>
-							<div class="form-group" id="csstest">
+							<div class="form-group">
 									<button type="submit" class="btn btn-primary">ログイン</button>
 							</div>
 						</fieldset>
