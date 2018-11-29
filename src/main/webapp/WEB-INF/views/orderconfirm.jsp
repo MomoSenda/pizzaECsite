@@ -329,8 +329,23 @@
 			<div class="row">
 				<div class="col-xs-offset-4 col-xs-4">
 					<div class="form-group">
-						<input class="form-control btn btn-warning btn-block"
-							type="submit" value="この内容で注文する">
+							<button type="button" class="form-control btn btn-warning btn-block" data-toggle="modal" data-target="#sampleModal">
+							この内容で注文する
+							</button>
+
+							<div class="modal fade" id="sampleModal" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											注文を完了しますか？
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-primary">はい</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+										</div>
+									</div>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
