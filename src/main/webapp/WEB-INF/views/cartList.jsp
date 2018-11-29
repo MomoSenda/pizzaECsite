@@ -68,8 +68,57 @@
 		
 		<!-- ショッピングカートに商品がない場合 -->
 		<c:if test="${order==null}">
-			現在、ショッピングカートに商品はありません<br>
-			<a href="${pageContext.request.contextPath}/viewItemList/list">商品一覧に戻る</a>
+			現在、ショッピングカートに商品はありません。<br>
+			他の方はこんなピザも注文しています！<br>
+
+			
+		<!-- table -->
+						
+		<div class="row">
+			<div
+				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
+				<table class="table table-striped">
+					<tbody>
+						<tr>
+							<c:forEach var="item" items="${itemRecommendList}" varStatus="status">
+								<td>
+									
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
+										<img src="<c:out value="${item.imagePath}" />"class="img-responsive img-rounded" width="200" height="200">
+									</a><br>
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
+										<c:out value="${item.name}"></c:out><br>
+									</a><br>
+									
+									<span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
+									<fmt:formatNumber value="${item.priceM}" pattern="###,###"/>円（税抜き）<br>
+									<span class="price">&nbsp;Ｌ&nbsp;</span>&nbsp;&nbsp;
+									<fmt:formatNumber value="${item.priceL}" pattern="###,###"/>円（税抜き）<br>
+									<br>
+								</td>
+								<c:if test="${(status.index+1) % 3==0}">
+						</tr>
+							<tr>
+								</c:if>
+							</c:forEach>
+			
+							</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+			
+			<div class="row">
+			<div class="col-xs-offset-5 col-xs-3">
+				<div class="form-group">
+					<form:form action="${pageContext.request.contextPath}/viewItemList/list" method="post">
+						<input class="form-control btn btn-warning btn-block"
+							type="submit" value="商品一覧に戻る">
+					</form:form>
+				</div>
+			</div>
+		</div>
+			
 		</c:if><br>
 		
 		<!-- ショッピングカートに商品が1つ以上入っている場合 -->
@@ -204,6 +253,12 @@
 				</div>
 			</div>
 		</div>
+		
+	
+		
+		
+
+		
 	</div>
 	
 	</c:if>
