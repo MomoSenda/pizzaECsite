@@ -71,7 +71,7 @@
 									class="control-label" style="color: red" for="inputError"></label>
 									<form:errors path="zipcode" cssStyle="color:red" element="div"/>
 									<div class="input-group">
-										<form:input type="text" path="zipcode" id="inputZipcode" class="form-control"
+										<form:input type="text" pattern="^[0-9]{7}$" title="郵便番号はハイフン無しで入力してください" path="zipcode" id="inputZipcode" class="form-control"
 										placeholder="Zipcode"/>
 										<span class="input-group-btn">
 											<input type="button" id="residence" value="住所検索" class="btn btn-default">

@@ -18,13 +18,12 @@ public class RegisterUserForm {
 	private String name;
 	
 	/** メールアドレス */
-	@Email( message = "メールアドレスの形式が間違っています")
 	@NotBlank ( message = "メールアドレスを入力してください")
+	@Pattern(regexp = "^([\\w])+([\\w\\._-])*\\@([\\w])+([\\w\\._-])*\\.([a-zA-Z])+$",message="メールアドレスの形式が間違っています")
 	private String email;
 	
 	/** 郵便番号 */
 	@NotBlank( message = "郵便番号を入力してください")
-	@Size ( min=1, max=7, message= "ハイフン無しで入力してください")
 	private String zipcode;
 	
 	/** 住所 */
@@ -33,7 +32,6 @@ public class RegisterUserForm {
 	
 	/** 電話番号 */
 	@NotBlank ( message = "電話番号を入力してください")
-	@Size ( min=1, max=11, message="電話番号はハイフン無しで入力してください")
 	private String telephone;
 	
 	/** パスワード */
