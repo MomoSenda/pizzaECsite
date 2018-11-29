@@ -16,6 +16,7 @@ import jp.co.rakus.ec2018c.domain.LoginUser;
 import jp.co.rakus.ec2018c.domain.Order;
 import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.service.RecommendService;
+import jp.co.rakus.ec2018c.service.ShoppingCartBadgeService;
 import jp.co.rakus.ec2018c.service.ViewCartService;
 
 /**
@@ -35,6 +36,7 @@ public class ViewCartController {
 	@Autowired
 	private RecommendService recommendService;
 
+	private ShoppingCartBadgeService shoppingCartBadgeService;
 	
 	@Autowired
 	private HttpSession session;
@@ -65,6 +67,10 @@ public class ViewCartController {
 		status = 0;
 		
 		Order order = service.viewCart(userId, status);
+		if(order != null) {
+			Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
+			model.addAttribute("cartCount", cartCount);
+		}
 		model.addAttribute("order",order);
 		
 		List<Item> itemRecommendList = recommendService.recommend();

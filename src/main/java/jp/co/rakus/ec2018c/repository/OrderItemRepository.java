@@ -74,4 +74,17 @@ public class OrderItemRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("beforeOrderId", beforeOrderId).addValue("afterOrderId", afterOrderId);
 		namedParameterJdbcTemplate.update(sql, param);
 	}
+	
+	/**
+	 * バッジにするためのカートの商品数を検索する.
+	 * 
+	 * @param orderId OrderのId
+	 * @return カートの商品数
+	 */
+	public Integer countByOrderId(Integer orderId) {
+		String sql = "SELECT count(*) FROM order_items WHERE order_id=:orderId;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId);
+		Integer cartCount = namedParameterJdbcTemplate.queryForObject(sql, param, Integer.class);
+		return cartCount;
+	}
 }
