@@ -33,7 +33,7 @@ public class OrderDestinationForm {
 	
 	/** 送り先電話番号 */
 	@NotBlank ( message = "電話番号を入力してください")
-	@Size ( min = 1, max = 11, message = "電話番号はハイフン無しで入力をお願いします")
+	@Size ( min = 1, max = 11, message = "電話番号はハイフン無し、11文字で入力をお願いします")
 	private String destinationTel;
 	
 	/** 配達日 */
