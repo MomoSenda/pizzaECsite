@@ -2,6 +2,8 @@ package jp.co.rakus.ec2018c.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * ユーザー関連のリクエストパラメーターが入るフォーム.
@@ -30,6 +32,7 @@ public class RegisterUserForm {
 	
 	/** 電話番号 */
 	@NotBlank ( message = "電話番号を入力してください")
+	@Size ( min=1, max=11, message="電話番号はハイフン無しで入力してください")
 	private String telephone;
 	
 	/** パスワード */
@@ -37,7 +40,7 @@ public class RegisterUserForm {
 	private String password;
 	
 	/** 確認用パスワード */
-	@NotBlank ( message = "確認用パスワードを入力してください")
+	@NotBlank ( message = "もう一度パスワードを入力してください")
 	private String checkPassword;
 
 	@Override
