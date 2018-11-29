@@ -109,7 +109,8 @@
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary">登録</button>
-								<button type="button" class="jquery_reset_perfect">リセット</button>
+								<button type="button" class="btn btn-default" id="jquery_reset_perfect">リセット</button>
+								
 							</div>
 						</fieldset>
 					</form:form>
