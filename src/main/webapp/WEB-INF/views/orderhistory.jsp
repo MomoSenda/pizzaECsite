@@ -70,11 +70,11 @@
 
 
 		<!-- table -->
+		<h3 class="text-center">注文内容確認</h3>
 		<c:forEach var="order" items="${orders}">
 		<div class="row">
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
-				<h3 class="text-center">注文内容確認</h3>
 				<table class="table table-striped">
 					<tbody>
 						<tr>
