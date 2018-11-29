@@ -36,8 +36,10 @@ public class OrderHistoryController {
 
 		List<Order> orders = orderHistoryService.findByUserIdAndStatusList(userId, ORDERED_ID);
 		Order order = orderService.findByUserIdAndStatus(userId, UNOURDERD_ID);
-		Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
-		model.addAttribute("cartCount", cartCount);
+		if(order != null) {
+			Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
+			model.addAttribute("cartCount", cartCount);
+		}
 		model.addAttribute("orders", orders);
 		return "orderhistory";
 	}
