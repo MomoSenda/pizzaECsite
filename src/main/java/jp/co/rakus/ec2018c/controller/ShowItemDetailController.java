@@ -44,7 +44,7 @@ public class ShowItemDetailController {
 		Item item=showItemDetailService.load(id);
 		
 		if(item == null) {
-			return "404";
+			return "redirect:/500";
 		}
 
 		List<Topping> toppingList=showItemDetailService.findAll();
