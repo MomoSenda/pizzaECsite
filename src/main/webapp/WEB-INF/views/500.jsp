@@ -82,7 +82,6 @@
 				<div class="form-group">
 				<div class="form-group text-center">
 
-				<table class="table table-striped">
 		<span style="font-size:15pt;">Page not found 該当商品が見つかりませんでした。</span>
 		<br>
 		<br>
@@ -100,6 +99,38 @@
 		<br>
 		<br>
 		<br>
+		<!-- table -->
+		
+		<div class="row">
+			<div
+				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
+				<table class="table table-striped">
+					<tbody>
+						<tr>　<h3>おすすめ商品</h3>
+						</tr>
+						<tr>
+							<c:forEach var="item" items="${itemRecommendList}" varStatus="status">
+								<td>
+									
+									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
+										<img src="<c:out value="${item.imagePath}" />"class="img-responsive img-rounded" width="200" height="200">
+									</a><br>
+									<p class="left"><a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
+										<c:out value="${item.name}"></c:out><br>
+									</a><br></p>
+									
+									<p class="left"><span class="price">&nbsp;М&nbsp;</span>&nbsp;&nbsp;
+									<fmt:formatNumber value="${item.priceM}" pattern="###,###"/>円（税抜き）</p>
+									<p class="left"><span class="price">&nbsp;Ｌ&nbsp;</span>&nbsp;&nbsp;
+									<fmt:formatNumber value="${item.priceL}" pattern="###,###"/>円（税抜き）</p>
+									<br>
+								</td>
+							</c:forEach>
+							</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
 				
 			<div class="col-xs-offset-5 col-xs-3">
 					<form:form action="${pageContext.request.contextPath}/viewItemList/list" method="post">
@@ -109,10 +140,8 @@
 				</div>
 			</div>
 			</div>
-				</table>
 
 			</div>
 		</div>
-</div>
 </body>
 </html>
