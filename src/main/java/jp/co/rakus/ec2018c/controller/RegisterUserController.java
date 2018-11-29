@@ -1,7 +1,10 @@
 package jp.co.rakus.ec2018c.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,9 +12,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec2018c.domain.LoginUser;
+import jp.co.rakus.ec2018c.domain.Order;
 import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.form.RegisterUserForm;
 import jp.co.rakus.ec2018c.service.RegisterUserService;
+import jp.co.rakus.ec2018c.service.ShoppingCartBadgeService;
+import jp.co.rakus.ec2018c.service.ViewCartService;
 
 @Controller
 @RequestMapping("/registeruser")
@@ -20,8 +27,14 @@ public class RegisterUserController {
 	@Autowired
 	private RegisterUserService registerUserService;
 
+	@Autowired
+	private ViewCartService service;
 	
+	@Autowired
+	private ShoppingCartBadgeService shoppingCartBadgeService;
 	
+	@Autowired
+	private HttpSession session;
 	
 	/**
 	 * フォームを初期化する.
@@ -39,7 +52,25 @@ public class RegisterUserController {
 	 * @return　メンバー情報登録画面
 	 */
 	@RequestMapping("/form")
-	public String form(Model model) {
+	public String form(Model model,@AuthenticationPrincipal LoginUser loginUser) {
+		//ログイン認証からユーザー情報を取得し、ユーザーIDに代入.
+		Integer userId;
+		
+		if(loginUser == null) {
+			userId = session.getId().hashCode();
+		}else {
+			User user = loginUser.getUser();
+			userId = user.getId();
+		}
+		
+		//未購入の注文情報を指定.
+		Integer status = 0;
+		
+		Order order = service.viewCart(userId, status);
+		if(order != null) {
+			Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
+			model.addAttribute("cartCount", cartCount);
+		}
 		return "registeruser";
 	}
 	
@@ -55,7 +86,8 @@ public class RegisterUserController {
 	@RequestMapping("/create")
 	public String create(@Validated RegisterUserForm form,
 								BindingResult result,
-								Model model) {
+								Model model,
+								@AuthenticationPrincipal LoginUser loginUser) {
 		
 		
 		
@@ -74,7 +106,7 @@ public class RegisterUserController {
 		
 		
 		if(result.hasErrors()) {
-			return form(model);
+			return form(model,loginUser);
 		}
 		
 		
