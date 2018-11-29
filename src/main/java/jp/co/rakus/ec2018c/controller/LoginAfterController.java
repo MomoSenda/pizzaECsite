@@ -65,8 +65,10 @@ public class LoginAfterController {
 					orderRepository.deleteById(sessionOrder.getId());
 				}
 			}else {
-				sessionOrder.setUserId(user.getId());
-				orderRepository.save(sessionOrder);
+				if(sessionOrder != null) {
+					sessionOrder.setUserId(user.getId());
+					orderRepository.save(sessionOrder);
+				}
 			}
 		}
 		
