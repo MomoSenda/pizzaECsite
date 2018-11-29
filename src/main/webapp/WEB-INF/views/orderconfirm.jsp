@@ -77,7 +77,7 @@
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">注文内容確認</h3>
-				<table class="table table-striped">
+				<table class="table table-striped table table-bordered">
 					<tbody>
 						<tr>
 							<th>
@@ -141,7 +141,7 @@
 			<div
 				class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">お支払い金額</h3>
-			<table class="table table-striped">
+			<table class="table table-striped table table-bordered">
 						<tr>
 							<td colspan="5">
 								<div class="text-right">
@@ -188,7 +188,7 @@
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 					<h3 class="text-center">お届け先情報</h3>
-					<table class="table table-striped">
+					<table class="table table-striped table table-bordered">
 						<tbody>
 							<tr>
 								<td>
@@ -296,13 +296,13 @@
 				<div
 					class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 					<h3 class="text-center">お支払い方法</h3>
-					<table class="table table-striped">
+					<table class="table table-bordered">
 						<tbody>
 							<tr>
 								<td>
 									<div class="text-center">代金引換</div>
 								</td>
-								<td>
+								<td align="center">
 									<div class="row">
 										<div class="col-sm-12">
 											<label class="radio-inline"> <input type="radio"

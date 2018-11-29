@@ -77,7 +77,7 @@
 		<div class="row">
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
-				<table class="table table-striped">
+				<table class="table table-striped table table-bordered">
 					<tbody>
 						<tr>
 							<c:forEach var="item" items="${itemRecommendList}" varStatus="status">
@@ -125,7 +125,7 @@
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">ショッピングカート</h3>
-				<table class="table table-striped">
+				<table class="table table-striped table table-bordered">
 					<tbody>
 						<tr>
 							<th>
@@ -222,7 +222,7 @@
 			<div
 				class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
 				<h3 class="text-center">お支払い金額</h3>
-			<table class="table table-striped">
+			<table class="table table-striped table table-bordered">
 						<tr>
 							<td colspan="5">
 								<div class="text-right">
