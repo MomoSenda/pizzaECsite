@@ -91,8 +91,8 @@
 								<label for="inputTel">電話番号:　　※ハイフン無しで入力してください</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
-								<form:errors path="telephone" cssStyle="color:red" element="div"/>
-								<form:input type="text" path="telephone" id="inputTel" class="form-control"
+<%-- 								<form:errors path="telephone" cssStyle="color:red" element="div"/> --%>
+								<form:input type="text" pattern="^([0-9]{10,11})$" title="電話番号はハイフン無しで入力してください" path="telephone" id="inputTel" class="form-control"
 									placeholder="Tell"/>
 							</div>
 							<div class="form-group">
