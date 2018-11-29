@@ -10,12 +10,23 @@ import org.springframework.stereotype.Service;
 import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.repository.ItemRepository;
 
+/**
+ * ランダムで商品を3件取得するサービス
+ * 
+ * @author risa.okumura
+ *
+ */
 @Service
 public class RecommendService {
 	
 	@Autowired
 	private ItemRepository itemRepository;
 
+	/**
+	 * 全件検索結果をシャッフルし、リストに3件取り出す.
+	 * 
+	 * @return　ランダムで商品が3つ入ったリスト
+	 */
 	public List<Item> recommend(){
 		
 	List<Item> itemList = itemRepository.findAll();
