@@ -3,6 +3,7 @@ package jp.co.rakus.ec2018c.form;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -18,8 +19,8 @@ public class OrderDestinationForm {
 	private String destinationName;
 	
 	/** 送り先メールアドレス */
-	@Email ( message = "メールアドレスの形式が間違ってます")
 	@NotBlank ( message = "メールアドレスを入力してください")
+	@Pattern(regexp = "^([\\w])+([\\w\\._-])*\\@([\\w])+([\\w\\._-])*\\.([a-zA-Z])+$",message="メールアドレスの形式が間違っています")
 	private String destinationEmail;
 	
 	/** 送り先郵便番号 */
@@ -33,7 +34,7 @@ public class OrderDestinationForm {
 	
 	/** 送り先電話番号 */
 	@NotBlank ( message = "電話番号を入力してください")
-	@Size ( min = 1, max = 11, message = "電話番号はハイフン無しで入力をお願いします")
+	@Size ( min = 1, max = 11, message = "電話番号はハイフン無し、11文字で入力をお願いします")
 	private String destinationTel;
 	
 	/** 配達日 */

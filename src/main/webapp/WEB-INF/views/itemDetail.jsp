@@ -124,10 +124,11 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<label for="inputResponsibleCompany">
-										トッピング：&nbsp;1つにつき
+										トッピング：<br>
+										&nbsp;1つにつき&nbsp;&nbsp;
 										<span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;
 										<input id="toppingM" type="hidden" value="${toppingList.get(0).priceM}">
-										<fmt:formatNumber value="${toppingList.get(0).priceM}" pattern="###,###"/>円（税抜き）<br>
+										<fmt:formatNumber value="${toppingList.get(0).priceM}" pattern="###,###"/>円（税抜き）&nbsp;&nbsp;
 										<span>&nbsp;Ｌ</span>&nbsp;&nbsp;
 										<input id="toppingL" type="hidden" value="${toppingList.get(0).priceL}">
 										<fmt:formatNumber value="${toppingList.get(0).priceL}" pattern="###,###"/>円（税抜き）<br>

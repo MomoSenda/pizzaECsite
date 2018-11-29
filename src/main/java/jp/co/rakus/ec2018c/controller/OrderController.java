@@ -50,7 +50,7 @@ public class OrderController {
 	 * @return 注文表示画面
 	 */
 	@RequestMapping("/orderconfirm")
-	public String index(Model model,@AuthenticationPrincipal LoginUser loginUser){
+	public String index(Model model,@AuthenticationPrincipal LoginUser loginUser,boolean error){
 		Integer status = UNORDERED_ID; 
 		//ログイン中のユーザを取得する
 		User user = loginUser.getUser();
@@ -60,6 +60,9 @@ public class OrderController {
 		Integer cartCount = shoppingCartBadgeService.countByOrderId(order.getId());
 		model.addAttribute("cartCount", cartCount);
 		model.addAttribute("order", order);
+		if(!error) {
+			model.addAttribute("user", user);
+		}
 		return "orderconfirm";
 	}
 	
@@ -86,7 +89,7 @@ public class OrderController {
 			}
 		}
 		if(result.hasErrors()) {
-			return index(model,loginUser);
+			return index(model,loginUser,true);
 		}
 		
 		Integer status = UNORDERED_ID;
