@@ -54,7 +54,6 @@ public class LoginAfterController {
 		Integer sessionId = (Integer) session.getAttribute("sessionId");
 		if(sessionId != null) {
 			Integer status = orderController.UNORDERED_ID;
-			System.out.println(sessionId);
 			Order sessionOrder = orderRepository.findByUserIdAndStatus(sessionId, status);
 
 			User user = loginUser.getUser();
