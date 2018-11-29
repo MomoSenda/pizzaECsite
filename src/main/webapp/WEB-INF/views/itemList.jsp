@@ -54,7 +54,7 @@
 						<c:choose>
 							<c:when test="${not empty userName}">
 								<span style="color:red">
-									<c:out value="${userName}　様" ></c:out>&nbsp;&nbsp;
+									<c:out value="${userName} 様" ></c:out>&nbsp;&nbsp;
 								</span>
 									<a href="/logout" class="navbar-link">ログアウト</a>
 							</c:when>
