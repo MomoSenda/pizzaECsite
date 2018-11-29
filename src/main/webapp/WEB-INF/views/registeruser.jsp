@@ -69,7 +69,7 @@
 								<label for="inputZipcode">郵便番号:</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
-									<input type="button" id="residence" value="住所検索">
+									<input type="button" id="residence" value="住所検索">　※ハイフン無しで入力してください
 								<form:errors path="zipcode" cssStyle="color:red" element="div"/>
 								<form:input type="text" path="zipcode" id="inputZipcode" class="form-control"
 									placeholder="Zipcode"/>
@@ -84,7 +84,7 @@
 									placeholder="Address"/>
 							</div>
 							<div class="form-group">
-								<label for="inputTel">電話番号:  ※ハイフン無しで入力してください</label>
+								<label for="inputTel">電話番号:　　※ハイフン無しで入力してください</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
 								<form:errors path="telephone" cssStyle="color:red" element="div"/>
