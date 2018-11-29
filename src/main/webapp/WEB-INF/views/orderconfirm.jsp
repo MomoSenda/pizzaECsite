@@ -134,18 +134,53 @@
 				</table>
 			</div>
 		</div>
-
+		
+		
+		
 		<div class="row">
-			<div class="col-xs-offset-2 col-xs-8">
-				<div class="form-group text-center">
-					<span id="total-price">消費税：<fmt:formatNumber
-							value="${order.tax}" pattern="###,###円" /></span><br> <span
-						id="total-price">ご注文金額合計：<fmt:formatNumber
-							value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込)
-					</span>
-				</div>
-			</div>
+			<div
+				class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12">
+				<h3 class="text-center">お支払い金額</h3>
+			<table class="table table-striped">
+						<tr>
+							<td colspan="5">
+								<div class="text-right">
+									<span style="font-size:15pt;">合計：<fmt:formatNumber value="${order.calcTotalPrice}" pattern="###,###"/>円</span>
+								</div>
+							</td >
+						</tr>
+						
+						<tr>
+							<td colspan="5">
+								<div class="text-right">
+									<span style="font-size:15pt;">消費税：<fmt:formatNumber value="${order.tax}" pattern="###,###"/>円</span>
+								</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td colspan="5">
+								<div class="text-right">
+									<span style="font-size:15pt; color:red;">お支払い金額合計：<fmt:formatNumber value="${order.calcTotalPrice + order.tax}" pattern="###,###"/>円</span>
+								</div>
+							</td>
+						</tr>
+			</table>
 		</div>
+		</div>	
+		
+
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-xs-offset-2 col-xs-8"> -->
+<!-- 				<div class="form-group text-center"> -->
+<%-- 					<span id="total-price">消費税：<fmt:formatNumber --%>
+<%-- 							value="${order.tax}" pattern="###,###円" /></span><br> <span --%>
+<%-- 						id="total-price">ご注文金額合計：<fmt:formatNumber --%>
+<%-- 							value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込) --%>
+<!-- 					</span> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!-- table -->
 		<form:form action="/order/order" modelAttribute="orderDestinationForm">
