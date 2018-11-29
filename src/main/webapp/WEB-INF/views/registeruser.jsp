@@ -66,13 +66,17 @@
 									placeholder="Email"/>
 							</div>
 							<div class="form-group">
-								<label for="inputZipcode">郵便番号:</label>
+								<label for="inputZipcode">郵便番号:　　※ハイフン無しで入力してください</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
-									<input type="button" id="residence" value="住所検索">　※ハイフン無しで入力してください
-								<form:errors path="zipcode" cssStyle="color:red" element="div"/>
-								<form:input type="text" path="zipcode" id="inputZipcode" class="form-control"
-									placeholder="Zipcode"/>
+									<form:errors path="zipcode" cssStyle="color:red" element="div"/>
+									<div class="input-group">
+										<form:input type="text" path="zipcode" id="inputZipcode" class="form-control"
+										placeholder="Zipcode"/>
+										<span class="input-group-btn">
+											<input type="button" id="residence" value="住所検索" class="btn btn-default">
+										</span>
+									</div>
 								
 							</div>
 							<div class="form-group">
