@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.handler.ExceptionHandlingWebHandler;
 
 import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.Topping;
@@ -112,9 +113,13 @@ public class ItemRepository {
 	public Item load(Integer id) {
 		String sql="SELECT id,name,description,price_m,price_l,image_path,deleted FROM items WHERE id= :id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-		Item item=namedParameterJdbcTemplate.queryForObject(sql, param, ITEM_ROW_MAPPER);
+		List<Item> itemList=namedParameterJdbcTemplate.query(sql, param, ITEM_ROW_MAPPER);
 		
-		return item;
+		if(itemList.size()==0) {
+			return null;
+		}
+		
+		return itemList.get(0);
 		
 	}
 	
