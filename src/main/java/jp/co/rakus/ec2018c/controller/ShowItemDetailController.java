@@ -64,6 +64,7 @@ public class ShowItemDetailController {
 		
 		Item item=showItemDetailService.load(id);
 		
+		//不正なidが呼ばれた場合
 		if(item == null) {
 			return "redirect:/500";
 		}

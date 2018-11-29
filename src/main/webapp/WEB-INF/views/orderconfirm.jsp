@@ -197,7 +197,7 @@
 								
 								<td>
 									<form:errors path="destinationName" cssStyle="color:red" element="div"/>
-									<form:input path="destinationName"/>
+									<form:input path="destinationName" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
@@ -206,7 +206,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationEmail" cssStyle="color:red" element="div"/>
-									<form:input path="destinationEmail"/>
+									<form:input path="destinationEmail" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
@@ -215,8 +215,13 @@
 								</td>
 									<td>
 									<form:errors path="destinationZipcode" cssStyle="color:red" element="div"/>
-									<form:input path="destinationZipcode"/>&nbsp;&nbsp;
-									<button type="button" id="address">住所検索</button></td>
+									<div class="input-group">
+										<form:input path="destinationZipcode" class="form-control"/>
+										<span class="input-group-btn">
+											<button type="button" id="address" class="btn btn-default">住所検索</button>
+										</span>
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>
@@ -224,7 +229,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationAddress" cssStyle="color:red" element="div"/>									
-									<form:input path="destinationAddress"/>
+									<form:input path="destinationAddress" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
@@ -233,7 +238,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationTel" cssStyle="color:red" element="div"/>									
-									<form:input path="destinationTel"/>
+									<form:input path="destinationTel" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
@@ -249,9 +254,9 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-sm-5">
+											<div class="col-sm-12">
 												<input type="date" name="deliveryDate" id="deliveryDate"
-													class="form-control input-sm" />
+													class="form-control" />
 											</div>
 										</div>
 
