@@ -197,7 +197,7 @@
 								
 								<td>
 									<form:errors path="destinationName" cssStyle="color:red" element="div"/>
-									<form:input path="destinationName" class="form-control"/>
+									<form:input path="destinationName" class="form-control" value="${user.name}"/>
 								</td>
 							</tr>
 							<tr>
@@ -206,7 +206,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationEmail" cssStyle="color:red" element="div"/>
-									<form:input path="destinationEmail" class="form-control"/>
+									<form:input path="destinationEmail" class="form-control" value="${user.email}"/>
 								</td>
 							</tr>
 							<tr>
@@ -216,7 +216,7 @@
 									<td>
 									<form:errors path="destinationZipcode" cssStyle="color:red" element="div"/>
 									<div class="input-group">
-										<form:input path="destinationZipcode" class="form-control"/>
+										<form:input path="destinationZipcode" class="form-control" value="${user.zipcode}"/>
 										<span class="input-group-btn">
 											<button type="button" id="address" class="btn btn-default">住所検索</button>
 										</span>
@@ -229,7 +229,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationAddress" cssStyle="color:red" element="div"/>									
-									<form:input path="destinationAddress" class="form-control"/>
+									<form:input path="destinationAddress" class="form-control" value="${user.address}"/>
 								</td>
 							</tr>
 							<tr>
@@ -238,7 +238,7 @@
 								</td>
 								<td>
 									<form:errors path="destinationTel" cssStyle="color:red" element="div"/>									
-									<form:input path="destinationTel" class="form-control"/>
+									<form:input path="destinationTel" class="form-control" value="${user.telephone}"/>
 								</td>
 							</tr>
 							<tr>
