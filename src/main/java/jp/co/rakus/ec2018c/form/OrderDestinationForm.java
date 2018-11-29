@@ -36,9 +36,11 @@ public class OrderDestinationForm {
 	@Size ( min = 1, max = 11, message = "電話番号はハイフン無しで入力をお願いします")
 	private String destinationTel;
 	
+	/** 配達日 */
+	@NotEmpty ( message = "配達希望日を選んでください")
+	private String deliveryDate;
+	
 	/** 配達時間 */
-	//TODO:エラーチェックを行うために日時と時間を別のフィールドにする必要あり
-	//@NotEmpty ( message = "配達希望日時を選んでください")
 	private String deliveryTime;
 	
 	/** 支払い方法 */
@@ -74,6 +76,12 @@ public class OrderDestinationForm {
 	}
 	public void setDestinationTel(String destinationTel) {
 		this.destinationTel = destinationTel;
+	}
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 	public String getDeliveryTime() {
 		return deliveryTime;

@@ -1,5 +1,7 @@
 package jp.co.rakus.ec2018c.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +71,15 @@ public class OrderController {
 	public String order(@Validated OrderDestinationForm form,
 									BindingResult result,Model model,
 									@AuthenticationPrincipal LoginUser loginUser) {
-		
+		Timestamp timestamp = null;
+		if(result.getFieldErrorCount("deliveryDate") == 0) {
+			timestamp = orderService.stringToTimestamp(form.getDeliveryDate()+","+form.getDeliveryTime());
+			LocalDateTime localDateTime = LocalDateTime.now();
+			Timestamp nowTimestampPlusOneHour = Timestamp.valueOf(localDateTime.plusHours(1));
+			if(!nowTimestampPlusOneHour.before(timestamp)) {
+				result.rejectValue("deliveryDate", null, "配達日時は現時刻の1時間以降を指定してください");
+			}
+		}
 		if(result.hasErrors()) {
 			return index(model,loginUser);
 		}
@@ -90,7 +100,7 @@ public class OrderController {
 		order.setDestinationZipcode(form.getDestinationZipcode());
 		order.setDestinationAddress(form.getDestinationAddress());
 		order.setDestinationTel(form.getDestinationTel());
-		order.setDeliveryTime(orderService.stringToTimestamp(form.getDeliveryTime()));
+		order.setDeliveryTime(timestamp);
 		order.setPaymentMethod(Integer.valueOf(form.getPaymentMethod()));
 		
 		orderService.update(order);

@@ -209,12 +209,17 @@
 									<div class="form-group">
 										<div class="row">
 											
+											<div class="col-sm-10">
+												<form:errors path="deliveryDate" cssStyle="color:red" element="div"/>									
+											</div>
+										</div>
+										<div class="row">
 											<div class="col-sm-5">
-												<input type="date" name="deliveryTime" id="deliveryTime"
+												<input type="date" name="deliveryDate" id="deliveryDate"
 													class="form-control input-sm" />
 											</div>
-
 										</div>
+
 										<div class="row">
 											<div class="col-sm-12">
 												<label class="radio-inline"> <input type="radio"
