@@ -1,5 +1,7 @@
 package jp.co.rakus.ec2018c.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.LoginUser;
 import jp.co.rakus.ec2018c.domain.Order;
 import jp.co.rakus.ec2018c.domain.User;
+import jp.co.rakus.ec2018c.service.RecommendService;
 import jp.co.rakus.ec2018c.service.ViewCartService;
 
 /**
@@ -27,6 +31,10 @@ public class ViewCartController {
 	
 	@Autowired
 	private ViewCartService service;
+	
+	@Autowired
+	private RecommendService recommendService;
+
 	
 	@Autowired
 	private HttpSession session;
@@ -59,8 +67,11 @@ public class ViewCartController {
 		Order order = service.viewCart(userId, status);
 		model.addAttribute("order",order);
 		
-		return "cartList";
+		List<Item> itemRecommendList = recommendService.recommend();
+		model.addAttribute("itemRecommendList",itemRecommendList);
 		
+		
+		return "cartList";
 		
 	}
 	

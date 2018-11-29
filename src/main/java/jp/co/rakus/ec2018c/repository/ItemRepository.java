@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.server.handler.ExceptionHandlingWebHandler;
 
 import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.Topping;
