@@ -83,23 +83,23 @@
 				<div class="form-group text-center">
 
 				<table class="table table-striped">
-		該当商品が見つかりませんでした。
-<br>
-<br>
-<br>
-<br>
-<div class="imageContainer">
-<img src="../img/building_food_pizza.png" class="image" width="230" height="230">
-<img src="../img/pizza_mawashi.png" class="image" width="230" height="230">
-<img src="../img/pizza_nisou_kama.png" class="image" width="230" height="230">
-<img src="../img/pizza.png" class="image" width="230" height="230">
-<img src="../img/bike_sanrin_man.png" class="image" width="230" height="230">
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
+		<span style="font-size:15pt;">Page not found 該当商品が見つかりませんでした。</span>
+		<br>
+		<br>
+		<br>
+		<br>
+				<div class="imageContainer">
+					<img src="../../img/building_food_pizza.png" class="image" width="230" height="230">
+					<img src="../../img/pizza_mawashi.png" class="image" width="230" height="230">
+					<img src="../../img/pizza_nisou_kama.png" class="image" width="230" height="230">
+					<img src="../../img/pizza.png" class="image" width="230" height="230">
+					<img src="../../img/bike_sanrin_man.png" class="image" width="230" height="230">
+				</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 				
 			<div class="col-xs-offset-5 col-xs-3">
 					<form:form action="${pageContext.request.contextPath}/viewItemList/list" method="post">
