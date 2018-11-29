@@ -5,3 +5,5 @@
 .imageContainer {
 	overflow: hidden;
 }
+
+p.left {text-align: left}
