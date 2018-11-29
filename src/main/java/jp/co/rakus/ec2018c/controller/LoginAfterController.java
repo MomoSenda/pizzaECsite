@@ -70,6 +70,6 @@ public class LoginAfterController {
 			}
 		}
 		
-		return viewItemListController.list(model);
+		return viewItemListController.list(model,loginUser);
 	}
 }
