@@ -82,9 +82,6 @@
 								注文日：<fmt:formatDate value="${order.orderDate}" pattern="MM月dd日" />
 							</th>
 							<th>
-								ご注文金額合計：<fmt:formatNumber value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込)
-							</th>
-							<th>
 								お届け先:<c:out value="${order.destinationAddress}"/>
 							</th>
 							<th>
@@ -97,6 +94,9 @@
 								<c:if test="${order.status == 3}">
 									<fmt:formatDate value="${order.deliveryTime}" pattern="MM月dd日"/>に配達済み
 								</c:if>
+							</th>
+							<th>
+								ご注文金額合計：<fmt:formatNumber value="${order.calcTotalPrice+order.tax}" pattern="###,###円" />(税込)
 							</th>
 						</tr>
 						<tr>
