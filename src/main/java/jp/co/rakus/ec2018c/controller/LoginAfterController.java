@@ -60,8 +60,10 @@ public class LoginAfterController {
 			Order loginUserOrder = orderRepository.findByUserIdAndStatus(user.getId(), status);
 			
 			if(loginUserOrder != null) {
-				orderItemRepository.updateToOrderId(sessionOrder.getId(), loginUserOrder.getId());
-				orderRepository.deleteById(sessionOrder.getId());
+				if(sessionOrder != null && loginUserOrder != null) {
+					orderItemRepository.updateToOrderId(sessionOrder.getId(), loginUserOrder.getId());
+					orderRepository.deleteById(sessionOrder.getId());
+				}
 			}else {
 				sessionOrder.setUserId(user.getId());
 				orderRepository.save(sessionOrder);
