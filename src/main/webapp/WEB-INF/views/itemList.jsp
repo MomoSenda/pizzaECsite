@@ -115,7 +115,9 @@
 								<td>
 									
 									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
+									<div class="img-block">
 										<img src="<c:out value="${item.imagePath}" />"class="img-responsive img-rounded" width="200" height="200">
+									</div>
 									</a><br>
 									<a href="${pageContext.request.contextPath}/ShowItemDetail/detail/${item.id}">
 										<c:out value="${item.name}"></c:out><br>
@@ -136,9 +138,9 @@
 							</tr>
 					</tbody>
 				</table>
-
+			</div>
 			</div>
 		</div>
-</div>
+
 </body>
 </html>
