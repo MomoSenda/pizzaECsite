@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー登録画面</title>
+<title>Insert title here</title>
 
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
@@ -77,7 +77,7 @@
 											<input type="button" id="residence" value="住所検索" class="btn btn-default">
 										</span>
 									</div>
-								
+
 							</div>
 							<div class="form-group">
 								<label for="inputAddress">住所:</label>
