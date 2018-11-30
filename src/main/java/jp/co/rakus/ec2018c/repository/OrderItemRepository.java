@@ -87,4 +87,13 @@ public class OrderItemRepository {
 		Integer cartCount = namedParameterJdbcTemplate.queryForObject(sql, param, Integer.class);
 		return cartCount;
 	}
+	
+	public void updateQuantity(Integer orderId2,Integer orderItemId2,Integer quantity2) {
+		String sql = "UPDATE order_items SET quantity = :quantity WHERE id = :id AND order_id = :orderId;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId2).addValue("id", orderItemId2).addValue("quantity", quantity2);
+		namedParameterJdbcTemplate.update(sql, param);
+		
+	}
+	
+	
 }

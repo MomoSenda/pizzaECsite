@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests() 					// 認可に関する設定
 				.antMatchers("/", "/registeruser/form", "/registeruser/create", "/viewCart",
 							"/deleteByOrderItemId","/viewItemList/list","/ShowItemDetail/detail/{id}",
-							"/addCart","/SearchItem/search","/404").permitAll() // 「/」などのパスはすべてのユーザーに許可
+							"/addCart","/SearchItem/search","/404","/updateQuantity").permitAll() // 「/」などのパスはすべてのユーザーに許可
 				.anyRequest().authenticated();		 // それ以外のパスは認証が必要
 
 		http.formLogin() 							// ログインに関する設定
