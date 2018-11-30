@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.invalidateHttpSession(true); 		// true:ログアウト後、セッションを無効にする false:セッションを無効にしない
 
 		// Exceptionハンドラ
-		http.exceptionHandling().accessDeniedPage("/403.jsp"); // 不正なリクエストを検知しました
+		http.exceptionHandling().accessDeniedPage("/404.jsp"); // 不正なリクエストを検知しました
 
 	}
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ネットでピザ注文</title>
+<title>ログイン画面</title>
 
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/login-out.css" rel="stylesheet">

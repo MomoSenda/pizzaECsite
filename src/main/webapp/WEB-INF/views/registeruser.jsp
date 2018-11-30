@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ユーザー登録画面</title>
 
 <link href="/css/bootstrap.css" rel="stylesheet">
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
