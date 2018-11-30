@@ -20,7 +20,7 @@ public class Extra505Controller {
 	@Autowired
 	private RecommendService recommendService;
 	
-	@RequestMapping("/500")
+	@RequestMapping("/404")
 	
 	public String index(Model model) {
 		List<Item> itemRecommendList = recommendService.recommend();

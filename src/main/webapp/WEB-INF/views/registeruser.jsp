@@ -91,7 +91,7 @@
 								<label for="inputTel">電話番号:　　※ハイフン無しで入力してください</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
-<%-- 								<form:errors path="telephone" cssStyle="color:red" element="div"/> --%>
+								<form:errors path="telephone" cssStyle="color:red" element="div"/>
 								<form:input type="text" pattern="^([0-9]{10,11})$" title="電話番号はハイフン無しで入力してください" path="telephone" id="inputTel" class="form-control"
 									placeholder="Tell"/>
 							</div>
@@ -99,7 +99,7 @@
 								<label for="inputPassword">パスワード:　※半角英数字　大文字小文字を入れた8～16字で設定してください</label>
 								<label
 									class="control-label" style="color: red" for="inputError"></label>
-<%-- 								<form:errors path="password" cssStyle="color:red" element="div"/>				 --%>
+								<form:errors path="password" cssStyle="color:red" element="div"/>				
 								<form:input type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="パスワードは半角英数字 8~16文字で入力してください。" path="password" id="inputPassword" class="form-control"
 									placeholder="Password"/>
 							</div>

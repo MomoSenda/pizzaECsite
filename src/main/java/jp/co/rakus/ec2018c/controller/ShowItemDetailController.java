@@ -67,7 +67,7 @@ public class ShowItemDetailController {
 		
 		//不正なidが呼ばれた場合
 		if(item == null) {
-			return "redirect:/500";
+			return "redirect:/404";
 		}
 
 		List<Topping> toppingList=showItemDetailService.findAll();
