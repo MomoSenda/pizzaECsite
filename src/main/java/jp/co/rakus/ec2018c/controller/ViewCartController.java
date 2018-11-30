@@ -87,6 +87,14 @@ public class ViewCartController {
 		
 	}
 	
+	/**
+	 * 注文商品の個数を変更した後、更新されたカートを表示する.
+	 * 
+	 * @param orderId 注文情報のID
+	 * @param orderItemId　注文商品のID
+	 * @param quantity　注文商品の数量
+	 * @return　カートを表示するコントローラー
+	 */
 	@RequestMapping("/updateQuantity")
 	public String updateQuantity(String orderId, String orderItemId, String quantity) {
 		System.out.println("test");

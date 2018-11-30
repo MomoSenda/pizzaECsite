@@ -12,8 +12,13 @@ import jp.co.rakus.ec2018c.repository.OrderItemRepository;
 import jp.co.rakus.ec2018c.repository.OrderRepository;
 import jp.co.rakus.ec2018c.repository.OrderToppingRepository;
 
+/**
+ * ショッピングカートに商品を追加するサービスクラス.
+ * 
+ * @author risa.okumura
+ *
+ */
 @Service
-//FIXME:javadoc漏れ
 public class AddCartService {
 
 	@Autowired
@@ -26,7 +31,7 @@ public class AddCartService {
 	private OrderRepository orderRepository;
 
 	/**
-	 * ショッピングカートに商品を追加するサービスクラス.
+	 * ショッピングカートに商品を追加する.
 	 * 
 	 * @param itemId
 	 *            商品のID
@@ -42,13 +47,11 @@ public class AddCartService {
 	public void addCart(Integer itemId, Integer userId, Integer quantity, Character size, List<Integer> toppingIdList) {
 
 		Integer status = 0;
-		//Integer orderId = 1;
 		
 		// ユーザーIDと注文ステータスが未購入のものを検索
 		Integer orderId = null;
 		
 		Order order = orderRepository.findByUserIdAndStatus(userId, status);
-		//Order order = null;
 		
 		int totalPrice = 0;
 

@@ -88,6 +88,13 @@ public class OrderItemRepository {
 		return cartCount;
 	}
 	
+	/**
+	 * 注文情報のIDと注文商品のIDが一致した、注文商品の数量を変更する.
+	 * 
+	 * @param orderId2 注文情報のID
+	 * @param orderItemId2　注文商品のID
+	 * @param quantity2　注文商品の数量
+	 */
 	public void updateQuantity(Integer orderId2,Integer orderItemId2,Integer quantity2) {
 		String sql = "UPDATE order_items SET quantity = :quantity WHERE id = :id AND order_id = :orderId;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId2).addValue("id", orderItemId2).addValue("quantity", quantity2);
