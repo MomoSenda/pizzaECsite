@@ -20,6 +20,12 @@ import jp.co.rakus.ec2018c.service.RegisterUserService;
 import jp.co.rakus.ec2018c.service.ShoppingCartBadgeService;
 import jp.co.rakus.ec2018c.service.ViewCartService;
 
+/**
+ * ユーザー関連処理を行うコントローラー.
+ * 
+ * @author yuta.ikeda
+ *
+ */
 @Controller
 @RequestMapping("/registeruser")
 //FIXME:javadoc漏れ
