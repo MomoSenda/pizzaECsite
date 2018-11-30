@@ -1,11 +1,8 @@
 package jp.co.rakus.ec2018c.repository;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -13,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.rakus.ec2018c.domain.Item;
-import jp.co.rakus.ec2018c.domain.Topping;
 
 /**
  * Itemテーブル操作用のリポジトリ.
@@ -42,37 +38,7 @@ public class ItemRepository {
 
 };
 
-	private static final ResultSetExtractor<List<Item>> ITEM_RESULT_SET_EXTRACTOR =(rs)->{
-		List<Item> itemList = new LinkedList<Item>();
-		Item item=null;
-		List<Topping> toppingList = null;
-		int beforeItemId=0;
-		while(rs.next()) {
-			if(rs.getInt("id")!=beforeItemId) {
-				item= new Item();
-				item.setId(rs.getInt("id"));
-				item.setName(rs.getString("name"));
-				item.setDescription(rs.getString("description"));
-				item.setPriceM(rs.getInt("price_m"));
-				item.setPriceL(rs.getInt("price_l"));
-				item.setImagePath(rs.getString("image_path"));
-				item.setDeleted(rs.getBoolean("deleted"));
-				toppingList= new ArrayList<Topping>();
-				item.setToppingList(toppingList);
-				itemList.add(item);
-			}
-			if(rs.getInt("top_id")!=0) {
-				Topping topping= new Topping();
-				topping.setId(rs.getInt("top_id"));
-				topping.setName(rs.getString("top_name"));
-				topping.setPriceM(rs.getInt("top_price_m"));
-				topping.setPriceL(rs.getInt("top_price_l"));
-				toppingList.add(topping);
-			}
-			beforeItemId = item.getId();
-		}
-		return itemList;
-	};
+
 
 	/**
 	 * 商品の全情報を取得する
@@ -122,13 +88,6 @@ public class ItemRepository {
 		
 	}
 	
-	// FIXME:これは何をするメソッド？　javadoc漏れ、変数名や戻り値の型から推測できない、i.id=5という５って何を意味するかが後から読んだ人が読み取れず、、
-	public List<Item> load2(Integer id) {
-		String sql = "SELECT i.id,i.name,i.description,i.price_m,i.price_l,i.image_path,i.deleted,top.id AS top_id,top.name AS top_name, top.price_m AS top_price_m,top.price_l AS top_price_l FROM items AS i CROSS JOIN toppings AS top WHERE i.id=5";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-	
-		List<Item> itemList = namedParameterJdbcTemplate.query(sql, param, ITEM_RESULT_SET_EXTRACTOR);
-		return itemList;
-	}
+
 
 }

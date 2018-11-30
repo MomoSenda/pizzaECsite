@@ -58,18 +58,13 @@ public class SearchItemController {
 		
 		List<Item> itemList = new ArrayList<>();
 		itemList =viewItemListService.findByName(searchItemForm.getName());
-//		
+		
 		if(itemList.size() == 0) {
 			result.rejectValue("name", null, "該当する商品がありません");
 			itemList = viewItemListService.findAll();
-			// FIXME:不要なコメントはpush時は削除しましょう
-//			return "redirect:/viewItemList/list";
-////			return "itemList";
+
 		}
-//		
-////		if(result.hasErrors()) {
-////		}
-//		
+
 		model.addAttribute("itemList", itemList);
 		//ログイン認証からユーザー情報を取得し、ユーザーIDに代入.
 		Integer userId;

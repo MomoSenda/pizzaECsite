@@ -11,17 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.service.RecommendService;
 
+/**
+ * エラーページを表示するコントローラ.
+ * 
+ * @author momo.senda
+ *
+ */
 @Controller
 @RequestMapping("/")
 @Transactional
-//FIXME:javadoc漏れ
+
 public class Extra505Controller {
 
 	@Autowired
 	private RecommendService recommendService;
 	
+	/**
+	 * お勧め商品を表示する.
+	 * @param model モデル
+	 * @return　エラー画面
+	 */
 	@RequestMapping("/404")
-	
 	public String index(Model model) {
 		List<Item> itemRecommendList = recommendService.recommend();
 		model.addAttribute("itemRecommendList",itemRecommendList);

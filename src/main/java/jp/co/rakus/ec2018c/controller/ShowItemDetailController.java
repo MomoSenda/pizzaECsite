@@ -34,10 +34,6 @@ import jp.co.rakus.ec2018c.service.ViewItemListService;
 public class ShowItemDetailController {
 	@Autowired
 	private ShowItemDetailService  showItemDetailService;
-
-	@Autowired
-	// FIXME:使っていない変数。警告は０を目指しましょう
-	private ViewItemListService viewItemListService;
 	
 	@Autowired
 	private ViewCartService service;
