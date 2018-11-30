@@ -15,6 +15,7 @@ import jp.co.rakus.ec2018c.domain.Item;
 import jp.co.rakus.ec2018c.domain.LoginUser;
 import jp.co.rakus.ec2018c.domain.Order;
 import jp.co.rakus.ec2018c.domain.User;
+import jp.co.rakus.ec2018c.service.ChangeQuantityService;
 import jp.co.rakus.ec2018c.service.RecommendService;
 import jp.co.rakus.ec2018c.service.ShoppingCartBadgeService;
 import jp.co.rakus.ec2018c.service.ViewCartService;
@@ -38,6 +39,9 @@ public class ViewCartController {
 
 	@Autowired
 	private ShoppingCartBadgeService shoppingCartBadgeService;
+	
+	@Autowired
+	private ChangeQuantityService changeQuantityService;
 	
 	@Autowired
 	private HttpSession session;
@@ -80,6 +84,19 @@ public class ViewCartController {
 		
 		
 		return "cartList";
+		
+	}
+	
+	@RequestMapping("/updateQuantity")
+	public String updateQuantity(String orderId, String orderItemId, String quantity) {
+		System.out.println("test");
+		Integer orderId2 = Integer.parseInt(orderId);
+		Integer orderItemId2 = Integer.parseInt(orderItemId);
+		Integer quantity2 = Integer.parseInt(quantity);
+		
+		changeQuantityService.updateQuantity(orderId2, orderItemId2, quantity2);
+		
+		return "redirect:/viewCart";
 		
 	}
 	
