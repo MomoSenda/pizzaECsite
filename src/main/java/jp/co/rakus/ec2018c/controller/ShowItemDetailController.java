@@ -36,6 +36,7 @@ public class ShowItemDetailController {
 	private ShowItemDetailService  showItemDetailService;
 
 	@Autowired
+	// FIXME:使っていない変数。警告は０を目指しましょう
 	private ViewItemListService viewItemListService;
 	
 	@Autowired

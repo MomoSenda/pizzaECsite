@@ -62,6 +62,7 @@ public class SearchItemController {
 		if(itemList.size() == 0) {
 			result.rejectValue("name", null, "該当する商品がありません");
 			itemList = viewItemListService.findAll();
+			// FIXME:不要なコメントはpush時は削除しましょう
 //			return "redirect:/viewItemList/list";
 ////			return "itemList";
 		}

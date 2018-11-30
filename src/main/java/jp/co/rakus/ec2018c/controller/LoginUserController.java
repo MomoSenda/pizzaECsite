@@ -18,6 +18,8 @@ import jp.co.rakus.ec2018c.service.ViewCartService;
 
 @Controller
 @RequestMapping("/")
+// XXX:Userオブジェクトをセッションに入れる場合はこのように@SessionAttributesを使う方法もあります。
+// こうするとmodel.addAttribute("user",user);でセッションに入れることができます。でも使ってる？？
 @SessionAttributes( types = {User.class})
 public class LoginUserController {
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import jp.co.rakus.ec2018c.repository.OrderItemRepository;
 
 @Service
+//FIXME:javadoc漏れ
 public class ShoppingCartBadgeService {
 	@Autowired
 	private OrderItemRepository orederItemRepository;
