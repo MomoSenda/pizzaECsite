@@ -7,6 +7,12 @@ import org.springframework.stereotype.Service;
 import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.repository.UserRepository;
 
+/**
+ * ユーザー登録関連サービスクラス.
+ * 
+ * @author yuta.ikeda
+ *
+ */
 @Service
 //FIXME:javadoc漏れ
 public class RegisterUserService {
