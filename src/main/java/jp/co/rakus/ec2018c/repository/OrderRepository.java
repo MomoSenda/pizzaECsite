@@ -241,6 +241,7 @@ public class OrderRepository {
 				+ "LEFT OUTER JOIN order_toppings ot ON oi.id = ot.order_item_id INNER JOIN items i ON oi.item_id = i.id "
 				+ "LEFT OUTER JOIN toppings t ON ot.topping_id = t.id WHERE o.user_id=:user_id";
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource().addValue("user_id", userId);
+		// FIXME:これで実現できたのはすごい！ただ、後から手を入れづらいBチームのコードがシンプルに書けているので参考にしてみてください
 		for(int i = 1;i <= statusList.size();i++) {
 			if(i == 1) {
 				sql = sql + " AND ( o.status=:status"+i;

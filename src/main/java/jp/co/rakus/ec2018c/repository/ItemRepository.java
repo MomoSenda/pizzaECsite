@@ -122,7 +122,7 @@ public class ItemRepository {
 		
 	}
 	
-	
+	// FIXME:これは何をするメソッド？　javadoc漏れ、変数名や戻り値の型から推測できない、i.id=5という５って何を意味するかが後から読んだ人が読み取れず、、
 	public List<Item> load2(Integer id) {
 		String sql = "SELECT i.id,i.name,i.description,i.price_m,i.price_l,i.image_path,i.deleted,top.id AS top_id,top.name AS top_name, top.price_m AS top_price_m,top.price_l AS top_price_l FROM items AS i CROSS JOIN toppings AS top WHERE i.id=5";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);

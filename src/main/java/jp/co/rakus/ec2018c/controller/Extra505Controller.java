@@ -14,6 +14,7 @@ import jp.co.rakus.ec2018c.service.RecommendService;
 @Controller
 @RequestMapping("/")
 @Transactional
+//FIXME:javadoc漏れ
 public class Extra505Controller {
 
 	@Autowired

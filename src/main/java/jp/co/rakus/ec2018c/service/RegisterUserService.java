@@ -8,6 +8,7 @@ import jp.co.rakus.ec2018c.domain.User;
 import jp.co.rakus.ec2018c.repository.UserRepository;
 
 @Service
+//FIXME:javadoc漏れ
 public class RegisterUserService {
 
 	@Autowired

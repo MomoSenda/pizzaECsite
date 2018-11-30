@@ -22,6 +22,7 @@ import jp.co.rakus.ec2018c.service.ViewCartService;
 
 @Controller
 @RequestMapping("/registeruser")
+//FIXME:javadoc漏れ
 public class RegisterUserController {
 
 	@Autowired

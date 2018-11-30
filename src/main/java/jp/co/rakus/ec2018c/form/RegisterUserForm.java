@@ -4,7 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
+//FIXME:インポート文に警告あり。警告は０を目指しましょう
 /**
  * ユーザー関連のリクエストパラメーターが入るフォーム.
  * 

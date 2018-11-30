@@ -33,6 +33,7 @@ public class OrderItem {
 	 * @return 注文商品の小計金額
 	 */
 	public int getSubTotal() {
+		// FIXME:この場合はfinalつけて定数にしても良いかも
 		int subTotal = 0;
 		int orderItemPrice = 0;
 		int orderToppingPrice = 0;
