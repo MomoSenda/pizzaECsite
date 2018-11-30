@@ -20,3 +20,21 @@ span#total-price {
 	font-size: 30px;
 }
 
+.img-block {
+  width: 200px;
+  height: 121.85px;
+  overflow: hidden;
+}
+ 
+.img-block img {
+  transition: 0.5s;
+  /*拡大されるスピードを設定します*/
+}
+ 
+.img-block img:hover {
+  -moz-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  -o-transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  /*拡大される比率を設定します*/
+}
